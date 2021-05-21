@@ -37,12 +37,13 @@ if ALLOWED_HOSTS_ENV:
 
 INSTALLED_APPS = [
     # my apps
-    'accounts',
+    'accounts.apps.AccountsConfig',
+    'pages.apps.PagesConfig',
 
     # 3rd Party Apps
+    'crispy_forms',
 
     # built-in apps
-
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -154,8 +155,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static")
+]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
