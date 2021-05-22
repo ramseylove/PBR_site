@@ -65,8 +65,8 @@ class UserProfile(models.Model):
     timezone = models.CharField(max_length=50, null=True, blank=True)
     linkedin = models.URLField(verbose_name='LinkedIn Profile Url', null=True, blank=True)
     twitter = models.URLField(verbose_name='Twitter Page Url', null=True, blank=True)
-    resume = models.FileField()
-    profile_pic = models.ImageField(verbose_name='Profile Picture', )
+    resume = models.FileField(verbose_name='Resume', null=True, blank=True)
+    profile_pic = models.ImageField(verbose_name='Profile Picture', default='default.png')
 
     def __str__(self):
         return f'{self.name}'
