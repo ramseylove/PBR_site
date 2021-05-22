@@ -13,7 +13,7 @@ class Skills(models.Model):
     name = models.CharField(max_length=50)
     level = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(100)],
                                 help_text='Enter percentage represented as whole numbers 0 to 100')
-    resume = models.ForeignKey(Resume, null=True, blank=True, on_delete=models.CASCADE)
+    resume = models.ForeignKey(Resume, null=True, blank=True, on_delete=models.CASCADE, related_name='skills')
 
 
 class WorkExperience(models.Model):
@@ -23,7 +23,7 @@ class WorkExperience(models.Model):
     start_date = models.DateField(verbose_name='Start Date')
     end_date = models.DateTimeField(verbose_name='End Date', null=True)
     current = models.BooleanField(verbose_name='Currently employed', default=0)
-    resume = models.ForeignKey(Resume, null=True, blank=True, on_delete=models.CASCADE)
+    resume = models.ForeignKey(Resume, null=True, blank=True, on_delete=models.CASCADE, related_name='workexperiences')
 
 
 class Education(models.Model):
@@ -32,5 +32,5 @@ class Education(models.Model):
     start_date = models.DateField(verbose_name='Start Date')
     end_date = models.DateTimeField(verbose_name='End Date', null=True)
     current = models.BooleanField(verbose_name='Currently enrolled', default=0)
-    resume = models.ForeignKey(Resume, null=True, blank=True, on_delete=models.CASCADE)
+    resume = models.ForeignKey(Resume, null=True, blank=True, on_delete=models.CASCADE, related_name='education')
 

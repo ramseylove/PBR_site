@@ -1,4 +1,4 @@
-.PHONY: init ci analyze remove_vol build up down migrate superuser install
+.PHONY: init ci analyze remove_vol build up down migrate migrations superuser install
 
 projectName = pbr_site
 dockerComposeFile = docker-compose-dev.yml
@@ -17,6 +17,8 @@ up:
 	docker-compose -f $(dockerComposeFile) up
 down:
 	docker-compose -f $(dockerComposeFile) down
+migrations:
+	docker-compose -f $(dockerComposeFile) run --rm web python manage.py makemigrations $(app)
 migrate:
 	docker-compose -f $(dockerComposeFile) run --rm web python manage.py migrate
 superuser:
