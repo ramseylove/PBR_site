@@ -1,9 +1,7 @@
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
-
-class Resume(models.Model):
-    about = models.TextField(verbose_name='About Me')
+from django.contrib.auth import get_user_model
 
 
 class Skills(models.Model):
@@ -22,9 +20,17 @@ class WorkExperience(models.Model):
 
 
 class Education(models.Model):
-    course = models.CharField(max_length=100, verbose_name='Course/Degree')
+    course = models.CharField(max_length=100, verbose_name='Course/Degree/Certificates')
     institute = models.CharField(max_length=100, verbose_name='Place of study')
     start_date = models.DateField(verbose_name='Start Date')
     end_date = models.DateTimeField(verbose_name='End Date', null=True)
     current = models.BooleanField(verbose_name='Currently enrolled', default=0)
+
+
+class Resume(models.Model):
+    about = models.TextField(verbose_name='About Me')
+    user = models.ForeignKey(get_user_model(), on_delete=models.PROTECT)
+    skills = models.ForeignKey(Skills, null=True, blank=True, on_delete=models.CASCADE)
+    work = models.ForeignKey(WorkExperience, null=True, blank=True, on_delete=models.CASCADE)
+    education = models.ForeignKey(Education, null=True, blank=True, on_delete=models.CASCADE)
 

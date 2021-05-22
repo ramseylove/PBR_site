@@ -57,16 +57,19 @@ class UserProfile(models.Model):
         primary_key=True,
     )
     name = models.CharField(max_length=100, blank=True, null=True)
-    contact_email = models.EmailField(verbose_name='Contact Email', default=CustomUser.email)
+    contact_email = models.EmailField(verbose_name='Contact Email', null=True, blank=True)
     birthdate = models.DateTimeField(verbose_name='Birthday', null=True, blank=True)
-    phone = models.CharField(max_length=50, verbose_name='Phone Number', null=True, blank=True)
+    phone = models.CharField(max_length=10, verbose_name='Phone Number', null=True, blank=True)
     city = models.CharField(max_length=100, null=True, blank=True)
     state = models.CharField(max_length=50, null=True, blank=True)
     timezone = models.CharField(max_length=50, null=True, blank=True)
     linkedin = models.URLField(verbose_name='LinkedIn Profile Url', null=True, blank=True)
     twitter = models.URLField(verbose_name='Twitter Page Url', null=True, blank=True)
-    resume = models.FileField(verbose_name='Resume', null=True, blank=True)
-    profile_pic = models.ImageField(verbose_name='Profile Picture', default='default.png')
+    resume = models.FileField(verbose_name='Resume', null=True, blank=True, upload_to='resumes')
+    profile_pic = models.ImageField(verbose_name='Profile Picture',
+                                    null=True,
+                                    upload_to='profile_pics',
+                                    default='default.png')
 
     def __str__(self):
         return f'{self.name}'
