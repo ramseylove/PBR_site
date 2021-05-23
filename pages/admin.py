@@ -25,8 +25,12 @@ class EducationAdmin(admin.StackedInline):
 
 class ResumeAdmin(admin.ModelAdmin):
     inlines = (SkillsAdmin, WorkExperienceAdmin, EducationAdmin)
-
     model = Resume
+
+    list_display = ('get_name', 'created_at', 'modified_at')
+
+    def get_name(self, obj):
+        return obj.userprofile.name
 
 
 admin.site.register(Resume, ResumeAdmin)

@@ -5,8 +5,11 @@ from django.contrib.auth import get_user_model
 
 
 class Resume(models.Model):
+    headline = models.CharField(verbose_name='Headline', max_length=120)
     about = models.TextField(verbose_name='About Me')
     user = models.ForeignKey(get_user_model(), on_delete=models.PROTECT)
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Created At')
+    modified_at = models.DateTimeField(auto_now=True, verbose_name='Modified At', null=True, blank=True)
 
 
 class Skills(models.Model):
@@ -21,16 +24,16 @@ class WorkExperience(models.Model):
     employer = models.CharField(max_length=100, verbose_name='Employer')
     description = models.TextField(verbose_name='Job Description')
     start_date = models.DateField(verbose_name='Start Date')
-    end_date = models.DateTimeField(verbose_name='End Date', null=True)
-    current = models.BooleanField(verbose_name='Currently employed', default=0)
+    end_date = models.DateField(verbose_name='End Date', null=True)
+    current = models.BooleanField(verbose_name='Currently employed', default=False)
     resume = models.ForeignKey(Resume, null=True, blank=True, on_delete=models.CASCADE, related_name='workexperiences')
 
 
 class Education(models.Model):
-    course = models.CharField(max_length=100, verbose_name='Course/Degree/Certificates')
+    course = models.CharField(max_length=100, verbose_name='Degree/Certificates')
     institute = models.CharField(max_length=100, verbose_name='Place of study')
     start_date = models.DateField(verbose_name='Start Date')
-    end_date = models.DateTimeField(verbose_name='End Date', null=True)
-    current = models.BooleanField(verbose_name='Currently enrolled', default=0)
+    end_date = models.DateField(verbose_name='End Date', null=True)
+    current = models.BooleanField(verbose_name='Currently enrolled', default=False)
     resume = models.ForeignKey(Resume, null=True, blank=True, on_delete=models.CASCADE, related_name='education')
 
