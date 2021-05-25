@@ -30,7 +30,9 @@ class ResumeAdmin(admin.ModelAdmin):
     list_display = ('get_name', 'created_at', 'modified_at')
 
     def get_name(self, obj):
-        return obj.userprofile.name
+        return obj.user.userprofile.name
+    get_name.short_description = 'Resume'
+    get_name.admin_order_field = 'get_name'
 
 
 admin.site.register(Resume, ResumeAdmin)

@@ -9,9 +9,14 @@
 
 ## ignore static collect files
 # static/
+assets/
 
 # ignore pyc files created by django or python
 *.pyc
+
+# pipenv files
+.cache/
+.local/
 
 # Byte-compiled / optimized / DLL files #
 __pycache__/

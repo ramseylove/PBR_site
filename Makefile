@@ -1,4 +1,4 @@
-.PHONY: init ci analyze remove_vol build up down migrate migrations superuser install
+.PHONY: init ci analyze remove_vol build up down migrate migrations superuser install collectstatic
 
 projectName = pbr_site
 dockerComposeFile = docker-compose-dev.yml
@@ -24,4 +24,6 @@ migrate:
 superuser:
 	docker-compose -f $(dockerComposeFile) run --rm web python manage.py createsuperuser
 install:
-	docker-compose -f $(dockerComposeFile) run --rm web pipenv install $(package)
+	docker-compose -f $(dockerComposeFile) run --rm web pipenv install $(package) --dev
+collectstatic:
+	docker-compose -f $(dockerComposeFile) run --rm web python manage.py collectstatic

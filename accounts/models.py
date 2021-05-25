@@ -1,3 +1,6 @@
+from datetime import date
+
+from dateutil.relativedelta import relativedelta
 from django.db import models
 from django.contrib.auth.models import (
     BaseUserManager, AbstractBaseUser, PermissionsMixin
@@ -66,14 +69,20 @@ class UserProfile(models.Model):
     linkedin = models.URLField(verbose_name='LinkedIn Profile Url', null=True, blank=True)
     twitter = models.URLField(verbose_name='Twitter Page Url', null=True, blank=True)
     github = models.URLField(verbose_name='Github', null=True, blank=True)
-    resume = models.FileField(verbose_name='Resume', null=True, blank=True, upload_to='resumes')
+    resume = models.FileField(verbose_name='Resume', null=True, blank=True, upload_to='resumes/')
     profile_pic = models.ImageField(verbose_name='Profile Picture',
                                     null=True,
-                                    upload_to='profile_pics',
+                                    upload_to='profile_pics/',
                                     default='default.png')
 
     def __str__(self):
         return f'{self.name}'
+
+    def age(self):
+        if self.birthdate is None:
+            return None
+        age = relativedelta(date.today(), self.birthdate)
+        return age.years
 
 
 @receiver(post_save, sender=get_user_model())

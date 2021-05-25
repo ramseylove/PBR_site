@@ -6,3 +6,7 @@ class HomeView(DetailView):
     template_name = 'pages/home.html'
     model = Resume
     context_object_name = 'resume'
+
+
+def resume(request):
+    pass

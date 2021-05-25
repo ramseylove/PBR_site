@@ -42,6 +42,8 @@ INSTALLED_APPS = [
 
     # 3rd Party Apps
     'crispy_forms',
+    'ckeditor',
+    'storages',
 
     # built-in apps
     'django.contrib.admin',
@@ -153,13 +155,30 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
-
-STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static")
+    os.path.join(BASE_DIR, 'static'),
 ]
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+if os.environ.get('USE_S3'):
+
+    AWS_ACCESS_KEY_ID = os.getenv('SPACES_ACCESS_KEY_ID')  # access key
+    AWS_SECRET_ACCESS_KEY = os.getenv('SPACES_SECRET_ACCESS_KEY')  # secret
+    AWS_STORAGE_BUCKET_NAME = os.getenv('SPACES_BUCKET_NAME')
+    AWS_S3_ENDPOINT_URL = 'https://sfo3.digitaloceanspaces.com'
+    AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
+    # s3 static settings
+    STATIC_LOCATION = 'static'
+    STATIC_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.{AWS_S3_ENDPOINT_URL}/{STATIC_LOCATION}/'
+    STATICFILES_STORAGE = 'config.custom_storages.StaticStorage'
+    # s3 public media settings
+    PUBLIC_MEDIA_LOCATION = 'media'
+    MEDIA_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.{AWS_S3_ENDPOINT_URL}/{PUBLIC_MEDIA_LOCATION}/'
+    DEFAULT_FILE_STORAGE = 'config.custom_storages.MediaStorage'
+else:
+    STATIC_URL = '/static/'
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+    MEDIA_URL = '/media/'
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
