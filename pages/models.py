@@ -19,6 +19,16 @@ class Skills(models.Model):
                                 help_text='Enter percentage represented as whole numbers 0 to 100')
     resume = models.ForeignKey(Resume, null=True, blank=True, on_delete=models.CASCADE, related_name='skills')
 
+    def get_level(self):
+        if self.level <= 50:
+            return "Novice"
+        elif self.level <= 65:
+            return "Advanced"
+        elif self.level <= 85:
+            return "Expert"
+        else:
+            return "Master"
+
 
 class WorkExperience(models.Model):
     job_title = models.CharField(max_length=100, verbose_name='Job Title')
@@ -38,4 +48,15 @@ class Education(models.Model):
     end_date = models.DateField(verbose_name='End Date', null=True)
     current = models.BooleanField(verbose_name='Currently enrolled', default=False)
     resume = models.ForeignKey(Resume, null=True, blank=True, on_delete=models.CASCADE, related_name='education')
+
+
+class Portfolio(models.Model):
+    title = models.CharField(max_length=100, verbose_name='Project Titles')
+    description = RichTextField(verbose_name='Portfolio Description', blank=True, null=True)
+    topic = models.CharField(max_length=100, verbose_name='Topics')
+    resume = models.ForeignKey(Resume, null=True, blank=True, on_delete=models.CASCADE, related_name='portfolio')
+    portfolio_pic = models.ImageField(verbose_name='Portfolio Picture',
+                                    null=True,
+                                    upload_to='portfolio_pics/'
+                                    )
 

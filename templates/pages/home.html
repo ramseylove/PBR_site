@@ -98,7 +98,13 @@
             <div class="h5">{{ work.job_title}} <span class="text-muted h6">at {{ work.employer}}</span></div>
           </div>
           <div class="timeline-body px-4 pb-4">
-            <div class="text-muted text-small mb-3">{{ work.start_date }} - {{ work.end_date }}</div>
+            <div class="text-muted text-small mb-3">{{ work.start_date }} -
+                {% if work.current %}
+                    Present
+                {% else %}
+                    {{ work.end_date }}
+                {% endif %}
+            </div>
             <div>{{ work.description|safe }}</div>
           </div>
         </div>
@@ -140,7 +146,7 @@
           <div class="mb-3"><span class="fw-bolder">{{ skill.name|capfirst }}</span>
             <div class="progress my-2 rounded" style="height: 20px">
               <div class="progress-bar bg-info" role="progressbar" data-aos="zoom-in-right" data-aos-delay="100" data-aos-anchor=".skills-section" style="width: {{ skill.level }}%;" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100">
-                  Master
+                  {{ skill.get_level }}
               </div>
             </div>
           </div>

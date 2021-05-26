@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Resume, Skills, WorkExperience, Education
+from .models import Resume, Skills, WorkExperience, Education, Portfolio
 
 
 class SkillsAdmin(admin.StackedInline):
@@ -20,6 +20,12 @@ class WorkExperienceAdmin(admin.StackedInline):
 class EducationAdmin(admin.StackedInline):
     model = Education
     verbose_name_plural = 'Education'
+    fk_name = 'resume'
+    extra = 0
+
+class PortfolioAdmin(admin.StackedInline):
+    model = Portfolio
+    verbose_name_plural = 'Portfolio'
     fk_name = 'resume'
     extra = 0
 
