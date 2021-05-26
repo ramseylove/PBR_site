@@ -52,7 +52,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return self.email
 
-# TODO: Add github profile field
+
 class UserProfile(models.Model):
     user = models.OneToOneField(
         CustomUser,

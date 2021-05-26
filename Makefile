@@ -26,4 +26,4 @@ superuser:
 install:
 	docker-compose -f $(dockerComposeFile) run --rm web pipenv install $(package) --dev
 collectstatic:
-	docker-compose -f $(dockerComposeFile) run --rm web python manage.py collectstatic
+	docker-compose -f $(dockerComposeFile) run --rm web python manage.py collectstatic --no-input

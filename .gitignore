@@ -9,7 +9,7 @@
 
 ## ignore static collect files
 # static/
-assets/
+staticfiles/
 
 # ignore pyc files created by django or python
 *.pyc

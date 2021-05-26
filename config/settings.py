@@ -159,7 +159,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
-if os.environ.get('USE_S3'):
+if os.environ.get('USE_S3') == True:
 
     AWS_ACCESS_KEY_ID = os.getenv('SPACES_ACCESS_KEY_ID')  # access key
     AWS_SECRET_ACCESS_KEY = os.getenv('SPACES_SECRET_ACCESS_KEY')  # secret
@@ -176,7 +176,7 @@ if os.environ.get('USE_S3'):
     DEFAULT_FILE_STORAGE = 'config.custom_storages.MediaStorage'
 else:
     STATIC_URL = '/static/'
-    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
     MEDIA_URL = '/media/'
     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
