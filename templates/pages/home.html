@@ -15,19 +15,20 @@
             <div class="header-bio mt-3">
               <div data-aos="zoom-in" data-aos-delay="0">
                 <h2 class="h1">{{ resume.user.userprofile.name }}</h2>
-                <p>{{ resume.headline }}</p>
+                <p>{{ resume.headline|safe }}</p>
               </div>
               <div class="header-social mb-3 d-print-none" data-aos="zoom-in" data-aos-delay="200">
                 <nav role="navigation">
                   <ul class="nav justify-content-center">
-                    <li class="nav-item"><a class="nav-link" href="{{ resume.user.userprofile.twitter }}" title="Twitter"><i class="fab fa-twitter"></i><span class="menu-title sr-only">Twitter</span></a>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="https://www.facebook.com/templateflip" title="Facebook"><i class="fab fa-facebook"></i><span class="menu-title sr-only">Facebook</span></a>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="https://www.instagram.com/templateflip" title="Instagram"><i class="fab fa-instagram"></i><span class="menu-title sr-only">Instagram</span></a>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="https://github.com/templateflip" title="Github"><i class="fab fa-github"></i><span class="menu-title sr-only">Github</span></a>
-                    </li>
+                      {% if resume.user.userprofile.twitter %}
+                    <li class="nav-item"><a class="nav-link" href="{{ resume.user.userprofile.twitter }}" title="Twitter"><i class="fab fa-twitter"></i><span class="menu-title sr-only">Twitter</span></a></li>
+                      {% endif %}
+                      {% if resume.user.userprofile.linkedin %}
+                    <li class="nav-item"><a class="nav-link" href="{{ resume.user.userprofile.linkedin }}" title="LinkedIn"><i class="fab fa-linkedin"></i><span class="menu-title sr-only">LinkedIn</span></a></li>
+                      {% endif %}
+                      {% if resume.user.userprofile.github %}
+                    <li class="nav-item"><a class="nav-link" href="{{ resume.user.userprofile.github }}" title="Github"><i class="fab fa-github"></i><span class="menu-title sr-only">Github</span></a></li>
+                      {% endif %}
                   </ul>
                 </nav>
               </div>
@@ -44,7 +45,7 @@
       <h2 class="h2 fw-light mb-4">Professional Skills</h2>
       <div class="row">
         <div class="col-md-6">
-
+            <!--TODO: Make conditional 2 column -->
             {% for skill in resume.skills.all %}
           <div class="mb-3"><span class="fw-bolder">{{ skill.name }}</span>
             <div class="progress my-2 rounded" style="height: 20px">
@@ -64,7 +65,6 @@
       </div>
     </div>
   </div>
-   <!--TODO: Make conditional 2 column -->
   <div class="shadow-1-strong bg-white my-5 p-5" id="experience">
     <div class="work-experience-section">
       <h2 class="h2 fw-light mb-4">Work Experience</h2>
@@ -76,7 +76,7 @@
           </div>
           <div class="timeline-body px-4 pb-4">
             <div class="text-muted text-small mb-3">{{ work.start_date }} - {{ work.end_date }}</div>
-            <div>{{ work.description }}</div>
+            <div>{{ work.description|safe }}</div>
           </div>
         </div>
           {% endfor %}
@@ -84,22 +84,24 @@
       </div>
     </div>
   </div>
+    {% for education in resume.education.all %}
   <div class="shadow-1-strong bg-white my-5 p-5" id="education">
     <div class="education-section">
       <h2 class="h2 fw-light mb-4">Education</h2>
       <div class="timeline">
         <div class="timeline-card timeline-card-success" data-aos="fade-in" data-aos-delay="0">
           <div class="timeline-head px-4 pt-3">
-            <div class="h5">Masters in Information Technology <span class="text-muted h6">from International University</span>          </div>
+            <div class="h5">{{ education.course }} <span class="text-muted h6">from {{ education.institute }}</span>          </div>
           </div>
           <div class="timeline-body px-4 pb-4">
             <div class="text-muted text-small mb-3">2011 - 2013</div>
-            <div>Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition.</div>
+            <div>{{ education.description|default_if_none:"" }}</div>
           </div>
         </div>
       </div>
     </div>
   </div>
+    {% endfor %}
   <div class="shadow-1-strong bg-white my-5 p-5 d-print-none" id="portfolio">
     <div class="portfolio-section">
       <h2 class="h2 fw-light mb-4">Portfolio</h2>

@@ -33,6 +33,7 @@ class WorkExperience(models.Model):
 class Education(models.Model):
     course = models.CharField(max_length=100, verbose_name='Degree/Certificates')
     institute = models.CharField(max_length=100, verbose_name='Place of study')
+    description = RichTextField(verbose_name='Course description', blank=True, null=True)
     start_date = models.DateField(verbose_name='Start Date')
     end_date = models.DateField(verbose_name='End Date', null=True)
     current = models.BooleanField(verbose_name='Currently enrolled', default=False)
