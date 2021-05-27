@@ -23,14 +23,16 @@ class EducationAdmin(admin.StackedInline):
     fk_name = 'resume'
     extra = 0
 
+
 class PortfolioAdmin(admin.StackedInline):
     model = Portfolio
     verbose_name_plural = 'Portfolio'
     fk_name = 'resume'
     extra = 0
 
+
 class ResumeAdmin(admin.ModelAdmin):
-    inlines = (SkillsAdmin, WorkExperienceAdmin, EducationAdmin)
+    inlines = (SkillsAdmin, WorkExperienceAdmin, EducationAdmin, PortfolioAdmin)
     model = Resume
 
     list_display = ('get_name', 'created_at', 'modified_at')

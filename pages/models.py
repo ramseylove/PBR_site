@@ -55,8 +55,10 @@ class Portfolio(models.Model):
     description = RichTextField(verbose_name='Portfolio Description', blank=True, null=True)
     topic = models.CharField(max_length=100, verbose_name='Topics')
     resume = models.ForeignKey(Resume, null=True, blank=True, on_delete=models.CASCADE, related_name='portfolio')
-    portfolio_pic = models.ImageField(verbose_name='Portfolio Picture',
-                                    null=True,
-                                    upload_to='portfolio_pics/'
-                                    )
+    portfolio_pic = models.ImageField(verbose_name='Portfolio Picture', null=True, upload_to='portfolio_pics/')
+
+    def get_topics(self):
+        top = self.topic.split(',')
+        return ' / '.join(top)
+
 
