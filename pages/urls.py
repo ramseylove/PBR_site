@@ -1,8 +1,8 @@
 from django.urls import path
 
-from .views import HomeView
+from .views import resume_view
 
 urlpatterns = [
-    path('home/<int:pk>', HomeView.as_view(), name='home'),
+    path('', resume_view, name='resume'),
 ]
 

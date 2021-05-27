@@ -1,12 +1,11 @@
-from django.views.generic import DetailView
+from django.shortcuts import render
 
 from .models import Resume
 
-class HomeView(DetailView):
-    template_name = 'pages/home.html'
-    model = Resume
-    context_object_name = 'resume'
 
-
-def resume(request):
-    pass
+def resume_view(request):
+    resume = Resume.objects.get(pk=1)
+    context = {
+        "resume": resume
+    }
+    return render(request, 'pages/home.html', context)
