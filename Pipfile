@@ -11,6 +11,7 @@ boto3 = "==1.17.43"
 pillow = "==8.2.0"
 django-crispy-forms = "*"
 django-ckeditor = "*"
+gunicorn = "*"
 
 [dev-packages]
 django = "==3.2.3"
