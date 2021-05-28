@@ -20,7 +20,7 @@ RUN apt-get update \
     && pip install pipenv \
     && apt-get clean
 
-COPY Pipfile Pipfile.lock .
+COPY Pipfile .
 RUN pipenv install --skip-lock --system
 
 # Copy project
