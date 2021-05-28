@@ -25,5 +25,5 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('', include('pages.urls')),
 ]
-if os.environ.get('DEBUG'):
+if os.environ.get('DEBUG') == 0:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
