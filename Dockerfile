@@ -12,6 +12,7 @@ EXPOSE 8001
 # Set environment variables
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
+    SECRET_KEY=4bzi7s+810akxxbuatt1b@vi*acbt8_py83abk*h^hqlk_vun \
     PORT=8001
 
 RUN apt-get update \
