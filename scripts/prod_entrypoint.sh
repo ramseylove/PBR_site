@@ -12,10 +12,10 @@ then
 fi
 
 #python manage.py migrate
-python manage.py collectstatic --noinput
+#python manage.py collectstatic --noinput
 
 # Prepare log files and start outputting logs to stdout
-mkdir /app/logs
+#mkdir /app/logs
 touch /app/logs/gunicorn.log
 touch /app/logs/access.log
 tail -n 0 -f /app/logs/*.log &
