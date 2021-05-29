@@ -15,6 +15,7 @@ fi
 #python manage.py collectstatic --noinput
 
 # Prepare log files and start outputting logs to stdout
+mkdir /app/logs
 touch /app/logs/gunicorn.log
 touch /app/logs/access.log
 tail -n 0 -f /srv/logs/*.log &
