@@ -172,11 +172,11 @@ if os.environ.get('USE_S3') is not None:
     AWS_DEFAULT_ACL = 'public-read'
     # s3 static settings
     STATIC_LOCATION = 'static'
-    STATIC_URL = f'{AWS_S3_ENDPOINT_URL}/{STATIC_LOCATION}/'
+    STATIC_URL = f'https://{AWS_S3_ENDPOINT_URL}/{STATIC_LOCATION}/'
     STATICFILES_STORAGE = 'config.custom_storages.StaticStorage'
     # s3 public media settings
     PUBLIC_MEDIA_LOCATION = 'media'
-    MEDIA_URL = f'{AWS_S3_ENDPOINT_URL}/{PUBLIC_MEDIA_LOCATION}/'
+    MEDIA_URL = f'https://{AWS_S3_ENDPOINT_URL}/{PUBLIC_MEDIA_LOCATION}/'
     DEFAULT_FILE_STORAGE = 'config.custom_storages.MediaStorage'
     AWS_QUERYSTRING_AUTH = False  # ckeditor with AWS
     CKEDITOR_BASEPATH = STATIC_URL + 'ckeditor/ckeditor/'
