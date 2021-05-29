@@ -160,12 +160,13 @@ STATICFILES_DIRS = [
 ]
 
 if os.environ.get('USE_S3') is not None:
-    AWS_QUERYSTRING_AUTH = False # ckeditor with AWS
+
     AWS_ACCESS_KEY_ID = os.getenv('SPACES_ACCESS_KEY_ID')  # access key
     AWS_SECRET_ACCESS_KEY = os.getenv('SPACES_SECRET_ACCESS_KEY')  # secret
     AWS_STORAGE_BUCKET_NAME = os.getenv('SPACES_BUCKET_NAME')
     AWS_S3_ENDPOINT_URL = 'https://sfo3.digitaloceanspaces.com'
     AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
+    AWS_DEFAULT_ACL = 'public-read'
     # s3 static settings
     STATIC_LOCATION = 'static'
     STATIC_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.{AWS_S3_ENDPOINT_URL}/{STATIC_LOCATION}/'
@@ -174,6 +175,7 @@ if os.environ.get('USE_S3') is not None:
     PUBLIC_MEDIA_LOCATION = 'media'
     MEDIA_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.{AWS_S3_ENDPOINT_URL}/{PUBLIC_MEDIA_LOCATION}/'
     DEFAULT_FILE_STORAGE = 'config.custom_storages.MediaStorage'
+    AWS_QUERYSTRING_AUTH = False  # ckeditor with AWS
     CKEDITOR_BASEPATH = STATIC_URL + 'ckeditor/ckeditor/'
 else:
     STATIC_URL = '/static/'
