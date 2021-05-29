@@ -24,7 +24,7 @@ tail -n 0 -f /app/logs/*.log &
 echo Starting Gunicorn.
 exec gunicorn config.wsgi:application \
     --name pbr-site \
-    --bind 0.0.0.0:${8000} \
+    --bind 0.0.0.0:$PORT \
     --workers 1 \
     --log-level=info \
     --log-file=/app/logs/gunicorn.log \
