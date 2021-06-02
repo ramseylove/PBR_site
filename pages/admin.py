@@ -1,10 +1,11 @@
 from django.contrib import admin
 
-from .models import Resume, Skills, WorkExperience, Education, Portfolio
+from .models import Resume, Skills, SkillsTag, WorkExperience, Education, Portfolio
 
 
 class SkillsAdmin(admin.StackedInline):
     model = Skills
+    filter_horizontal = ('tag',)
     verbose_name_plural = 'Skills'
     fk_name = 'resume'
     extra = 0
@@ -43,4 +44,10 @@ class ResumeAdmin(admin.ModelAdmin):
     get_name.admin_order_field = 'get_name'
 
 
+class SkillsTagAdmin(admin.ModelAdmin):
+    model = SkillsTag
+    verbose_name_plural = 'Skill Tags'
+
+
+admin.site.register(SkillsTag, SkillsTagAdmin)
 admin.site.register(Resume, ResumeAdmin)
