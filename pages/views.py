@@ -8,6 +8,8 @@ def resume_view(request):
     skill_tags = SkillsTag.objects.all().distinct()
     context = {
         "resume": resume,
-        "skill_tags": skill_tags
+        "skill_tags": skill_tags,
+        "request": request
     }
+    print(dir(request))
     return render(request, 'pages/home.html', context)
