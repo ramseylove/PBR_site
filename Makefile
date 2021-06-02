@@ -1,4 +1,4 @@
-.PHONY: init ci analyze remove_vol build up down migrate migrations superuser install collectstatic req
+.PHONY: init ci analyze remove_vol build up down migrate migrations superuser install collectstatic req shell
 
 projectName = pbr_site
 dockerComposeFile = docker-compose-dev.yml
@@ -29,3 +29,5 @@ collectstatic:
 	docker-compose -f $(dockerComposeFile) run --rm web python manage.py collectstatic --no-input
 req:
 	pipenv lock -r --keep-outdated --requirements > requirements.txt
+shell:
+	docker-compose -f $(dockerComposeFile) run --rm web python manage.py shell_plus

@@ -56,6 +56,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 
+if ENVIRONMENT == 'docker_development':
+    INSTALLED_APPS += [
+        'django_extensions',
+    ]
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
