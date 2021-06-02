@@ -38,5 +38,27 @@
     <script src="{% static 'scripts/mdb.min.js' %}"></script>
     <script src="{% static 'scripts/aos.js' %}"></script>
     <script src="{% static 'scripts/main.js' %}"></script>
+    <script>
+    // Add active class to the current button (highlight it)
+    {#var header = document.getElementById("v-pills-tab");#}
+    {#var btns = header.getElementsByClassName("nav-link");#}
+    {#var tabContent = document.getElementById("v-pills-tabContent")#}
+    {#for (var i = 0; i < btns.length; i++) {#}
+    {#  btns[i].addEventListener("click", function() {#}
+    {#  var current = document.getElementsByClassName("active");#}
+    {#  current[0].className = current[0].className.replace(" active", "");#}
+    {#  this.className += " active";#}
+    {#  });#}
+    {#}#}
+        var triggerTabList = [].slice.call(document.querySelectorAll('#myTab a'))
+        triggerTabList.forEach(function (triggerEl) {
+          var tabTrigger = new bootstrap.Tab(triggerEl)
+
+          triggerEl.addEventListener('click', function (event) {
+            event.preventDefault()
+            tabTrigger.show()
+          })
+        })
+    </script>
   </body>
 </html>

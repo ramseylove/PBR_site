@@ -145,7 +145,7 @@
             <!-- Tabs nav -->
             <div class="nav flex-column nav-pills nav-pills-custom" id="v-pills-tab" role="tablist" aria-orientation="vertical">
             {% for tag in skill_tags.all %}
-              <a class="nav-link mb-3 p-3 shadow active" id="v-pills-{{ tag.name }}-tab" data-toggle="pill" href="#v-pills-{{ tag.name }}" role="tab" aria-controls="v-pills-{{ tag.name }}" aria-selected="true">
+              <a class="nav-link mb-3 p-3 shadow {% if forloop.first %} active {% endif %}" id="v-pills-{{ tag.name }}-tab" data-toggle="pill" href="#v-pills-{{ tag.name }}" role="tab" aria-controls="v-pills-{{ tag.name }}" aria-selected="true">
                 <i class="fa fa-user-circle-o mr-2"></i>
                 <span class="font-weight-bold small text-uppercase">{{ tag.name }}</span></a>
             {% endfor %}
@@ -154,9 +154,9 @@
 
               <div class="col-md-9">
                 <!-- Tabs content -->
-              {% for tag in skill_tags.all %}
                 <div class="tab-content" id="v-pills-tabContent">
-                  <div class="tab-pane fade shadow rounded bg-white {% if  %} show active p-5" id="v-pills-{{ tag.name }}" role="tabpanel" aria-labelledby="v-pills-{{ tag.name }}-tab">
+                {% for tag in skill_tags.all %}
+                  <div class="tab-pane fade shadow rounded bg-white {% if forloop.first %} show active {% endif %} p-5" id="v-pills-{{ tag.name }}" role="tabpanel" aria-labelledby="v-pills-{{ tag.name }}-tab">
                     <h4 class="font-italic mb-4">{{ tag.name }}</h4>
                       <ul>
                           {%  for skill in tag.tag.all  %}
@@ -164,8 +164,8 @@
                           {% endfor %}
                       </ul>
                   </div>
+                              {% endfor %}
                 </div>
-              {% endfor %}
               </div>
 
         </div>
@@ -244,15 +244,3 @@
 </div></div>
     </div>
 {% endblock content %}
-{#<script>#}
-{#// Add active class to the current button (highlight it)#}
-{#var header = document.getElementById("v-pills-tab");#}
-{#var btns = header.getElementsByClassName("nav-link");#}
-{#for (var i = 0; i < btns.length; i++) {#}
-{#  btns[i].addEventListener("click", function() {#}
-{#  var current = document.getElementsByClassName("active");#}
-{#  current[0].className = current[0].className.replace(" active", "");#}
-{#  this.className += " active";#}
-{#  });#}
-{#}#}
-{#</script>#}
