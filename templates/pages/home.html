@@ -143,9 +143,9 @@
         <div class="row">
           <div class="col-md-3">
             <!-- Tabs nav -->
-            <div class="nav flex-column nav-pills nav-pills-custom" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+            <div class="nav flex-column nav-pills nav-pills-custom" id="v-pills-tablist" role="tablist" aria-orientation="vertical">
             {% for tag in skill_tags.all %}
-              <a class="nav-link mb-3 p-3 shadow active" id="v-pills-tab" data-toggle="pill" href="#v-pills-{{ tag.name }}" role="tab" aria-controls="v-pills-{{ tag.name }}" aria-selected="true">
+              <a class="nav-link mb-3 p-3 shadow " id="v-pills-tab" data-tab="{{ tag.id }}" href="#v-pills-{{ tag.name }}" role="tab" aria-controls="v-pills-{{ tag.name }}" >
                 <i class="fa fa-user-circle-o mr-2"></i>
                 <span class="font-weight-bold small text-uppercase">{{ tag.name }}</span></a>
             {% endfor %}
@@ -154,9 +154,10 @@
 
               <div class="col-md-9">
                 <!-- Tabs content -->
+
                 <div class="tab-content" id="v-pills-tabContent">
                 {% for tag in skill_tags.all %}
-                  <div class="tab-pane fade shadow rounded bg-white {% if forloop.first %} show active {% else %} hidden {% endif %}p-5" id="v-pills-{{ tag.id }}" role="tabpanel" aria-labelledby="v-pills-{{ tag.name }}-tab">
+                  <div class="tab-pane fade shadow rounded bg-white p-5" id="v-pills-{{ tag.id }}" role="tabpanel" aria-labelledby="v-pills-{{ tag.name }}-tab">
                     <h4 class="font-italic mb-4">{{ tag.name }}</h4>
                       <ul>
                           {%  for skill in tag.tag.all  %}
@@ -164,7 +165,7 @@
                           {% endfor %}
                       </ul>
                   </div>
-                              {% endfor %}
+              {% endfor %}
                 </div>
               </div>
 
