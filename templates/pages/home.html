@@ -8,12 +8,12 @@
 <div class="resume-container">
   <div class="shadow-1-strong bg-white my-5" id="intro">
     <div class="bg-info text-white">
-      <div class="cover bg-image"><img src="{% static 'images/header-background.jpg' %}"/>
+      <div class="cover bg-image"><img src="{% static 'images/slc_sunset.jpg' %}"/>
         <div class="mask" style="background-color: rgba(0, 0, 0, 0.7);backdrop-filter: blur(2px);">
           <div class="text-center p-5">
-            <div class="avatar p-1"><img class="img-thumbnail shadow-2-strong" src="{{ resume.user.userprofile.profile_pic.url }}" width="160" height="160"/></div>
+            <div class="avatar p-1 " data-aos="zoom-in" data-aos-delay="200"><img class="img-thumbnail shadow-2-strong" src="{{ resume.user.userprofile.profile_pic.url }}" width="160" height="160"/></div>
             <div class="header-bio mt-3">
-              <div data-aos="zoom-in" data-aos-delay="0">
+              <div>
                 <h2 class="h1">{{ resume.user.userprofile.name }}</h2>
                 <p>{{ resume.headline|safe }}</p>
               </div>
@@ -38,7 +38,7 @@
                   </ul>
                 </nav>
               </div>
-              <div class="d-print-none"><a class="btn btn-outline-light btn-lg shadow-sm mt-1 me-3" href="material-resume.pdf" data-aos="fade-right" data-aos-delay="700">Download CV</a><a class="btn btn-info btn-lg shadow-sm mt-1" href="#contact" data-aos="fade-left" data-aos-delay="700">Hire Me</a></div>
+              <div class="d-print-none"><a class="btn btn-outline-light btn-lg shadow-sm mt-1 me-3" href="material-resume.pdf">Download CV</a><a class="btn btn-info btn-lg shadow-sm mt-1" href="#contact">Hire Me</a></div>
             </div>
           </div>
         </div>
@@ -93,7 +93,7 @@
       <h2 class="h2 fw-light mb-4">Work Experience</h2>
       <div class="timeline">
           {% for work in resume.workexperiences.all|dictsortreversed:"end_date" %}
-        <div class="timeline-card timeline-card-info" data-aos="fade-in" data-aos-delay="0">
+        <div class="timeline-card timeline-card-info">
           <div class="timeline-head px-4 pt-3">
             <div class="h5">{{ work.job_title}} <span class="text-muted h6">at {{ work.employer}}</span></div>
           </div>
@@ -158,7 +158,7 @@
                 {% for tag in skill_tags.all %}
                   <div class="tab-pane fade shadow rounded bg-white {% if forloop.first %} show active {% endif %} p-5" id="v-pills-{{ tag.id }}" role="tabpanel" aria-labelledby="v-pills-tab">
                     <h4 class="font-italic mb-4">{{ tag.name }}</h4>
-                      <ul>
+                      <ul class="list-unstyled">
                           {%  for skill in tag.tag.all  %}
                         <li class="font-italic text-muted mb-2">{{ skill.name }}</li>
                           {% endfor %}
@@ -175,7 +175,7 @@
 
 
       {#    portfolio section    #}
-  {% if resume.portfolio %}
+  {% if resume.portfolio|length >= 1 %}
   <div class="shadow-1-strong bg-white my-5 p-5 d-print-none" id="portfolio">
     <div class="portfolio-section">
       <h2 class="h2 fw-light mb-4">Portfolio</h2>
@@ -193,7 +193,7 @@
               </div>
             {% else %}
                 <div class="row g-0 portfolio-reverse">
-                <div class="col-md-6 d-flex align-items-center" data-aos="fade-left" data-aos-delay="100">
+                <div class="col-md-6 d-flex align-items-center">
                   <div class="m-4 mt-md-2 text-end">
                     <p class="text-teal text-small">{{ p.get_topics }}</p>
                     <h3>{{ p.title }}</h3>
@@ -213,7 +213,7 @@
     <div class="contant-section">
       <h2 class="h2 fw-light text mb-4">Contact</h2>
       <div class="row mb-4">
-        <div class="col-md-5" data-aos="fade-left" data-aos-delay="200">
+        <div class="col-md-5" >
           <div class="mt-1">
             <div class="h6"><i class="fas fa-phone pe-2 text-muted" style="width:24px;opacity:0.85;"></i> {{ resume.user.userprofile.phone }}</div>
             <div class="h6"><i class="far fa-envelope pe-2 text-muted" style="width:24px;opacity:0.85;"></i>
