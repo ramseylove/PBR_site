@@ -17,6 +17,7 @@ tabsContainer.addEventListener('click',function (e) {
     console.log(clicked);
 
     if (!clicked) return;
+
     tabs.forEach(t => t.classList.remove('active'))
     tabsContent.forEach(c => c.classList.remove('show', 'active'))
 
