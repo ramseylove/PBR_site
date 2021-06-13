@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'crispy_forms',
     'ckeditor',
     'storages',
+    'adminsortable2',
+    'nested_inline',
 
     # built-in apps
     'django.contrib.admin',
