@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'crispy_forms',
     'ckeditor',
     'storages',
+    'adminsortable2',
+    'nested_inline',
 
     # built-in apps
     'django.contrib.admin',
@@ -59,6 +61,7 @@ INSTALLED_APPS = [
 if ENVIRONMENT == 'docker_development':
     INSTALLED_APPS += [
         'django_extensions',
+        'debug_toolbar',
     ]
 
 MIDDLEWARE = [
@@ -70,6 +73,14 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+if ENVIRONMENT == 'docker_development':
+    import socket
+
+    hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
+    INTERNAL_IPS = [ip[:-1] + "1" for ip in ips]
+    MIDDLEWARE = ['debug_toolbar.middleware.DebugToolbarMiddleware', ] + MIDDLEWARE
+
 
 ROOT_URLCONF = 'config.urls'
 
@@ -267,3 +278,5 @@ CKEDITOR_CONFIGS = {
         ]),
     }
 }
+
+
