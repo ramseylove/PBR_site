@@ -11,27 +11,27 @@
       <div class="cover bg-image"><img src="{% static 'images/slc_sunset.jpg' %}"/>
         <div class="mask" style="background-color: rgba(0, 0, 0, 0.7);backdrop-filter: blur(2px);">
           <div class="text-center p-5">
-            <div class="avatar p-1 " data-aos="zoom-in" data-aos-delay="200"><img class="img-thumbnail shadow-2-strong" src="{{ resume.user.userprofile.profile_pic.url }}" width="160" height="160"/></div>
+            <div class="avatar p-1 " data-aos="zoom-in" data-aos-delay="200"><img class="img-thumbnail shadow-2-strong" src="{{ profile.profile_pic.url }}" width="160" height="160"/></div>
             <div class="header-bio mt-3">
               <div>
-                <h2 class="h1">{{ resume.user.userprofile.name }}</h2>
+                <h2 class="h1">{{ profile.name }}</h2>
                 <p>{{ resume.headline|safe }}</p>
               </div>
               <div class="header-social mb-3 d-print-none" data-aos="zoom-in" data-aos-delay="200">
                 <nav role="navigation">
                   <ul class="nav justify-content-center">
-                      {% if resume.user.userprofile.twitter %}
-                    <li class="nav-item"><a class="nav-link" href="{{ resume.user.userprofile.twitter }}" title="Twitter" target="_blank" rel="noopener noreferrer">
+                      {% if profile.twitter %}
+                    <li class="nav-item"><a class="nav-link" href="{{ profile.twitter }}" title="Twitter" target="_blank" rel="noopener noreferrer">
                         <i class="fab fa-twitter"></i><span class="menu-title sr-only">Twitter</span></a>
                     </li>
                       {% endif %}
-                      {% if resume.user.userprofile.linkedin %}
-                    <li class="nav-item"><a class="nav-link" href="{{ resume.user.userprofile.linkedin }}" title="LinkedIn" target="_blank" rel="noopener noreferrer">
+                      {% if profile.linkedin %}
+                    <li class="nav-item"><a class="nav-link" href="{{ profile.linkedin }}" title="LinkedIn" target="_blank" rel="noopener noreferrer">
                         <i class="fab fa-linkedin"></i><span class="menu-title sr-only">LinkedIn</span></a>
                     </li>
                       {% endif %}
-                      {% if resume.user.userprofile.github %}
-                    <li class="nav-item"><a class="nav-link" href="{{ resume.user.userprofile.github }}" title="Github" target="_blank" rel="noopener noreferrer">
+                      {% if profile.github %}
+                    <li class="nav-item"><a class="nav-link" href="{{ profile.github }}" title="Github" target="_blank" rel="noopener noreferrer">
                         <i class="fab fa-github"></i><span class="menu-title sr-only">Github</span></a>
                     </li>
                       {% endif %}
@@ -57,28 +57,28 @@
         <div class="col-md-5 offset-lg-1">
           <div class="row mt-2">
             <h2 class="h2 fw-light mb-4">Bio</h2>
-              {% if resume.user.userprofile.contact_email %}
+              {% if profile.contact_email %}
             <div class="col-sm-5">
               <div class="pb-2 fw-bolder"><i class="far fa-envelope pe-2 text-muted" style="width:24px;opacity:0.85;"></i> Email</div>
             </div>
             <div class="col-sm-7">
-              <div class="pb-2">{{ resume.user.userprofile.contact_email }}</div>
+              <div class="pb-2">{{ profile.contact_email }}</div>
             </div>
               {% endif %}
-            {% if resume.user.userprofile.phone %}
+            {% if profile.phone %}
             <div class="col-sm-5">
               <div class="pb-2 fw-bolder"><i class="fas fa-phone pe-2 text-muted" style="width:24px;opacity:0.85;"></i> Phone</div>
             </div>
             <div class="col-sm-7">
-              <div class="pb-2">{{ resume.user.userprofile.phone }}</div>
+              <div class="pb-2">{{ profile.phone }}</div>
             </div>
             {% endif %}
-            {% if resume.user.userprofile.city or resume.user.userprofile.state %}
+            {% if profile.city or profile.state %}
             <div class="col-sm-5">
               <div class="pb-2 fw-bolder"><i class="fas fa-map-marker-alt pe-2 text-muted" style="width:24px;opacity:0.85;"></i> Location</div>
             </div>
             <div class="col-sm-7">
-              <div class="pb-2">{{ resume.user.userprofile.city }}, {{ resume.user.userprofile.state }}</div>
+              <div class="pb-2">{{ profile.city }}, {{ profile.state }}</div>
             </div>
             {% endif %}
           </div>
@@ -92,7 +92,7 @@
     <div class="work-experience-section">
       <h2 class="h2 fw-light mb-4">Work Experience</h2>
       <div class="timeline">
-          {% for work in resume.workexperiences.all|dictsortreversed:"end_date" %}
+          {% for work in resume.work.all|dictsortreversed:"end_date" %}
         <div class="timeline-card timeline-card-info">
           <div class="timeline-head px-4 pt-3">
             <div class="h5">{{ work.job_title}} <span class="text-muted h6">at {{ work.employer}}</span></div>
@@ -105,7 +105,7 @@
                     {{ work.end_date }}
                 {% endif %}
             </div>
-            <div>{{ work.description|safe }}</div>
+            <div>{{ work.description|default_if_none:""|safe }}</div>
           </div>
         </div>
           {% endfor %}
@@ -120,13 +120,19 @@
     <div class="education-section">
       <h2 class="h2 fw-light mb-4">Education</h2>
       <div class="timeline">
-          {% for education in resume.education.all|dictsortreversed:"end_date" %}
+          {% for education in resume.education.all|dictsortreversed:"start_date" %}
         <div class="timeline-card timeline-card-success" data-aos="fade-in" data-aos-delay="0">
           <div class="timeline-head px-4 pt-3">
             <div class="h5">{{ education.course }} <span class="text-muted h6">from {{ education.institute }}</span></div>
           </div>
           <div class="timeline-body px-4 pb-4">
-            <div class="text-muted text-small mb-3">{{ education.start_date|date:"Y" }} - {{ education.end_date|date:"Y" }}</div>
+            <div class="text-muted text-small mb-3">{{ education.start_date|date:"Y" }} -
+                {% if education.current %}
+                    Present
+                {% else %}
+                    {{ education.end_date|date:"Y" }}
+                {% endif %}
+            </div>
             <div>{{ education.description|default_if_none:""|safe }}</div>
           </div>
         </div>
@@ -144,8 +150,8 @@
           <div class="col-md-3">
             <!-- Tabs nav -->
             <div class="nav flex-column nav-pills nav-pills-custom" id="v-pills-tablist" role="tablist" aria-orientation="vertical">
-            {% for tag in skill_tags.all %}
-              <button class="nav-link mb-3 p-3 shadow pills-tab{% if forloop.first %} active {% endif %}" id="v-pills-tab" data-tab="{{ tag.id }}" href="#v-pills-{{ tag.id }}" role="tab" aria-controls="v-pills-tab" >
+            {% for tag in skill_tags %}
+              <button class="nav-link mb-3 p-3 shadow pills-tab{% if forloop.first %} active {% endif %}" id="v-pills-tab" data-tab="{{ tag.id }}"  role="tab" aria-controls="v-pills-tab" >
                 <i class="fa fa-user-circle-o mr-2"></i>
                 <span class="font-weight-bold small text-uppercase">{{ tag.name }}</span></button>
             {% endfor %}
@@ -155,12 +161,12 @@
               <div class="col-md-9">
                 <!-- Tabs content -->
                 <div class="tab-content" id="v-pills-tabContent">
-                {% for tag in skill_tags.all %}
+                {% for tag in skill_tags %}
                   <div class="tab-pane fade shadow rounded bg-white {% if forloop.first %} show active {% endif %} p-5" id="v-pills-{{ tag.id }}" role="tabpanel" aria-labelledby="v-pills-tab">
                     <h4 class="font-italic mb-4">{{ tag.name }}</h4>
                       <ul class="list-unstyled">
-                          {%  for skill in tag.tag.all  %}
-                        <li class="font-italic text-muted mb-2">{{ skill.name }}</li>
+                          {%  for skill in tag.tags.all  %}
+                        <li class="font-italic text-muted mb-2">{{ skill.name|title }}</li>
                           {% endfor %}
                       </ul>
                   </div>
@@ -173,16 +179,16 @@
     </div>
 </div>
 
+  {#    portfolio section    #}
+{% if portfolios %}
 
-      {#    portfolio section    #}
-  {% if resume.portfolio.all|length >= 1 %}
   <div class="shadow-1-strong bg-white my-5 p-5 d-print-none" id="portfolio">
     <div class="portfolio-section">
       <h2 class="h2 fw-light mb-4">Portfolio</h2>
-        {% for p in resume.portfolio.all %}
+        {% for p in portfolios %}
             {% if forloop.counter == 1 or forloop.counter|divisibleby:3 %}
-              <div class="row g-0">
-                <div class="col-md-6"><a href="#" ><img class="img-fluid" src="{{ p.portfolio_pic.url }}" width="800" height="500"/></a></div>
+              <div class="row g-0" {% if p.feature %}id="portfolio-link" data-bs-toggle="modal" data-bs-target="#portfolioModal-{{ p.id }}" style="cursor: pointer;">
+                <div class="col-md-6"><img class="img-fluid" src="{{ p.portfolio_pic.url }}" width="800" height="500"/></div>
                 <div class="col-md-6 d-flex align-items-center" data-aos="fade-right" data-aos-delay="100">
                   <div class="m-4 mt-md-2">
                     <p class="text-teal text-small">{{ p.get_topics }}</p>
@@ -192,7 +198,7 @@
                 </div>
               </div>
             {% else %}
-                <div class="row g-0 portfolio-reverse">
+                <div class="row g-0 portfolio-reverse" id="portfolio-link" style="cursor: pointer;">
                 <div class="col-md-6 d-flex align-items-center">
                   <div class="m-4 mt-md-2 text-end">
                     <p class="text-teal text-small">{{ p.get_topics }}</p>
@@ -200,7 +206,7 @@
                     <p class="text-muted">{{ p.description|safe }}</p>
                   </div>
                 </div>
-                <div class="col-md-6"><a href="#" ><img class="img-fluid" src="{{ p.portfolio_pic.url }}" width="800" height="500"/></a></div>
+                <div class="col-md-6"><div data-bs-toggle="modal" data-bs-target="#portfolioModal-{{ p.id }}"><img class="img-fluid" src="{{ p.portfolio_pic.url }}" width="800" height="500"/></div></div>
               </div>
             {% endif %}
         {% empty %}
@@ -210,14 +216,14 @@
   </div>
   {% endif %}
   <div class="shadow-1-strong bg-white my-5 p-5" id="contact">
-    <div class="contant-section">
+    <div class="contact-section">
       <h2 class="h2 fw-light text mb-4">Contact</h2>
       <div class="row mb-4">
         <div class="col-md-5" >
           <div class="mt-1">
-            <div class="h6"><i class="fas fa-phone pe-2 text-muted" style="width:24px;opacity:0.85;"></i> {{ resume.user.userprofile.phone }}</div>
+            <div class="h6"><i class="fas fa-phone pe-2 text-muted" style="width:24px;opacity:0.85;"></i> {{ profile.phone }}</div>
             <div class="h6"><i class="far fa-envelope pe-2 text-muted" style="width:24px;opacity:0.85;"></i>
-                {{ resume.user.userprofile.contact_email }}
+                {{ profile.contact_email }}
             </div>
           </div>
           <div class="mt-5 d-print-none"><form action="https://formspree.io/f/xnqldjde" method="POST">
@@ -243,9 +249,87 @@
     </div>
   </div>
 </div></div>
+</div>
+
+<!-- Portfolio Modal -->
+{% for p in portfolios %}
+    <div class="modal fade" id="portfolioModal-{{ p.id }}" tabindex="-1" role="dialog" aria-labelledby="{{ p.title }}"
+      aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5>{{ p.title }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <!--Carousel Wrapper-->
+                <div id="carouselIndicators" class="carousel slide" data-bs-ride="carousel">
+                  <div class="carousel-indicators">
+                      {% for image in p.images.all %}
+                        <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="{{ image.id }}" class="active" aria-current="true" aria-label="Slide {{ image.id }}"></button>
+                      {% endfor %}
+                  </div>
+                    <div class="carousel-inner">
+                    <!--Slides-->
+                        {% for image in p.images.all %}
+                          <div class="carousel-item {% if forloop.first %} active {% endif %}">
+                              <img src="{{ image.portfolio_image.url }}" class="d-block w-100" alt="{{ image.alt }}">
+                            </div>
+                        {% endfor %}
+                    </div>
+                  <!--/.Slides-->
+                      <!--Controls-->
+                      <button class="carousel-control-prev" type="button" data-bs-target="#carouselIndicators" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                      </button>
+                      <button class="carousel-control-next" type="button" data-bs-target="#carouselIndicators" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                      </button>
+                      <!--/.Controls-->
+                    </div>
+                </div>
+              </div>
+                <!--/.Carousel Wrapper-->
+            <div class="row">
+                <h4 class="text-center">Features</h4>
+            </div>
+                <!--Accordion wrapper-->
+                <div class="accordion accordion-flush" id="accordionEx" aria-multiselectable="false">
+                  <!-- Accordion card -->
+                {% for f in p.features.all %}
+                  <div class="accordion-item">
+                    <!-- Card header -->
+                    <div class="accordion-header" id="heading-{{ f.id }}">
+                      <div class="accordion-button collapsed" type="button"
+                           data-bs-toggle="collapse" data-bs-target="#collapse-{{ f.id }}" data-bs-parent="#accordionEx"
+                           data-tab="{{ f.id }}" aria-expanded="true" aria-controls="collapseOne1">
+                        <h5 class="mb-0">
+                            {{ f.title }}
+                        </h5>
+                      </div>
+                    </div>
+
+                    <!-- Card body -->
+                    <div id="collapse-{{ f.id }}" class="accordion-collapse collapse" aria-labelledby="headingOne1"
+                      data-bs-parent="#accordionEx">
+                      <div class="accordion-body">
+                          {{ f.description|safe }}
+                      </div>
+                    </div>
+                  </div>
+                    {% endfor %}
+                </div>
+                <!-- Accordion wrapper -->
+          </div>
+        </div>
+      </div>
     </div>
+
     <!-- Modal: modalQuickView -->
-    {% for p in resume.portfolio.all %}
+{% for p in resume.portfolio.all %}
 <div class="modal fade" id="modalPortfolio-{{ p.id }}" tabindex="-1" role="dialog" aria-labelledby="PortfolioModal"
   aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
@@ -331,5 +415,6 @@
     </div>
   </div>
 </div>
-    {% endfor %}
+{% endfor %}
+
 {% endblock content %}
