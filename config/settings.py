@@ -47,7 +47,6 @@ INSTALLED_APPS = [
     'ckeditor',
     'storages',
     'adminsortable2',
-    'nested_inline',
 
     # built-in apps
     'django.contrib.admin',
