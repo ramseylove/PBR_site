@@ -25,6 +25,9 @@ django-crispy-forms = "*"
 django-ckeditor = "*"
 django-extensions = "==3.1.2"
 python-dotenv = "*"
+django-admin-sortable2 = "*"
+django-nested-inline = "*"
+django-debug-toolbar = "*"
 
 [requires]
 python_version = "3.9"
