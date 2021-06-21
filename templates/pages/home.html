@@ -38,7 +38,11 @@
                   </ul>
                 </nav>
               </div>
-              <div class="d-print-none"><a class="btn btn-outline-light btn-lg shadow-sm mt-1 me-3" href="material-resume.pdf">Download CV</a><a class="btn btn-info btn-lg shadow-sm mt-1" href="#contact">Hire Me</a></div>
+              <div class="d-print-none">
+                  {% if profile.resume %}
+                    <a class="btn btn-outline-light btn-lg shadow-sm mt-1 me-3" href="{{ profile.resume.url }}">Download CV</a>
+                  {% endif %}
+                  <a class="btn btn-info btn-lg shadow-sm mt-1" href="#contact">Hire Me</a></div>
             </div>
           </div>
         </div>
