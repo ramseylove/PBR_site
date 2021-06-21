@@ -26,7 +26,7 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('', include('pages.urls')),
 ]
-if os.environ.get('DEBUG') != 0:
+if os.environ.get('ENVIRONMENT') != 'production':
     import debug_toolbar
     urlpatterns += path('__debug__/', include(debug_toolbar.urls))
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
