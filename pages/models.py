@@ -57,6 +57,9 @@ class WorkExperience(models.Model):
     def __str__(self):
         return self.employer
 
+    class Meta(object):
+        ordering = ['-end_date']
+
 
 class Education(models.Model):
     course = models.CharField(max_length=100, verbose_name='Degree/Certificate')

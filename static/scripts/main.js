@@ -18,34 +18,34 @@ const showPortfolio = document.querySelector('#portfolio-link')
 const portfolio = document.querySelector('.portfolio')
 
 // portfolio modal //
-showPortfolio.addEventListener('click', e=>{
-    e.preventDefault()
-
-    $.ajax({
-    type: 'GET',
-    url: '/portfolio/',
-    success: function (response) {
-        console.log(response.data)
-    },
-    error: function(error) {
-        console.log(error)
-    }
-
-});
-})
-
-portfolio.addEventListener('hover', function(){
-    portfolio.classList.add('border border-secondary')
-})
+// showPortfolio.addEventListener('click', e=>{
+//     e.preventDefault()
+//
+//     $.ajax({
+//     type: 'GET',
+//     url: '/portfolio/',
+//     success: function (response) {
+//         console.log(response.data)
+//     },
+//     error: function(error) {
+//         console.log(error)
+//     }
+//
+// });
+// })
+//
+// portfolio.addEventListener('hover', function(){
+//     portfolio.classList.add('border border-secondary')
+// })
 
 
 // tab container //
 
-// using event delagation requires selection of the parent element of the tabs
+// using event delegation requires selection of the parent element of the tabs
 tabsContainer.addEventListener(
     'click',function (e) {
     //matching strategy using closest
-    const clicked = e.target.closest('#v-pills-tab');
+    const clicked = e.target.closest('.pills-tab');
     console.log(clicked);
 
     if (!clicked) return;
@@ -60,13 +60,13 @@ tabsContainer.addEventListener(
 });
 
 
-portfolioSection.addEventListener('hover', function(e) {
-    e.preventDefault();
-    const portfolioLink = e.target.closest('#portfolio-link');
-    console.log(portfolioLink)
-
-    portfolioLink.style.bordercolor('#bdbbb5')
-});
+// portfolioSection.addEventListener('hover', function(e) {
+//     e.preventDefault();
+//     const portfolioLink = e.target.closest('#portfolio-link');
+//     console.log(portfolioLink)
+//
+//     portfolioLink.style.bordercolor('#bdbbb5')
+// });
 
 // accordion.addEventListener('click', function(e) {
 //     const clicked = e.target.closest('.card-header');
