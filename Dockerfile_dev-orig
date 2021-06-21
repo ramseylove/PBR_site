@@ -19,14 +19,14 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 RUN apt-get update \
     && apt-get install gcc python3-dev libpq-dev -y  \
     && pip install --upgrade pip \
+    && pip install pipenv \
     && apt-get clean
 
-COPY ./reqs /app/reqs
-
-RUN pip install -r reqs/dev-requirements.txt
+COPY Pipfile Pipfile.lock .
+RUN pipenv install --dev --skip-lock --system
 
 # Copy project
-COPY . /app
+COPY . .
 
 RUN chmod +x /app/scripts/*
 

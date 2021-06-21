@@ -1,10 +1,12 @@
 from django.contrib import admin
+from adminsortable2.admin import SortableInlineAdminMixin
 
-from .models import Resume, Skills, WorkExperience, Education, Portfolio
+from .models import Resume, Skills, SkillsTag, WorkExperience, Education, Portfolio, PortfolioImages, Feature
 
 
 class SkillsAdmin(admin.StackedInline):
     model = Skills
+    filter_horizontal = ('tag',)
     verbose_name_plural = 'Skills'
     fk_name = 'resume'
     extra = 0
@@ -24,15 +26,31 @@ class EducationAdmin(admin.StackedInline):
     extra = 0
 
 
-class PortfolioAdmin(admin.StackedInline):
-    model = Portfolio
-    verbose_name_plural = 'Portfolio'
-    fk_name = 'resume'
+class PortfolioImagesAdmin(SortableInlineAdminMixin, admin.StackedInline):
+    model = PortfolioImages
+    verbose_name_plural = 'Images'
+    fk_name = 'portfolio'
     extra = 0
 
 
+class FeatureAdmin(SortableInlineAdminMixin, admin.StackedInline):
+    model = Feature
+    verbose_name_plural = 'Features'
+    fk_name = 'portfolio'
+    extra = 0
+
+
+class PortfolioAdmin(admin.ModelAdmin):
+    inlines = (FeatureAdmin, PortfolioImagesAdmin,)
+    model = Portfolio
+    verbose_name_plural = 'Portfolio'
+    fk_name = 'resume'
+    list_display = ('title', 'resume')
+    # extra = 0
+
+
 class ResumeAdmin(admin.ModelAdmin):
-    inlines = (SkillsAdmin, WorkExperienceAdmin, EducationAdmin, PortfolioAdmin)
+    inlines = (SkillsAdmin, WorkExperienceAdmin, EducationAdmin)
     model = Resume
 
     list_display = ('get_name', 'created_at', 'modified_at')
@@ -43,4 +61,11 @@ class ResumeAdmin(admin.ModelAdmin):
     get_name.admin_order_field = 'get_name'
 
 
+class SkillsTagAdmin(admin.ModelAdmin):
+    model = SkillsTag
+    verbose_name_plural = 'Skill Tags'
+
+
+admin.site.register(Portfolio, PortfolioAdmin)
+admin.site.register(SkillsTag, SkillsTagAdmin)
 admin.site.register(Resume, ResumeAdmin)
