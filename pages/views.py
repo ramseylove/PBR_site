@@ -3,7 +3,7 @@ from django.core import serializers
 from django.http import JsonResponse
 from django.views.generic import View
 
-from .models import Resume, SkillsTag, Portfolio, Skills
+from .models import Resume, SkillsTag, Portfolio, Skills, Feature
 from accounts.models import UserProfile
 
 
@@ -12,6 +12,7 @@ def resume_view(request):
     profile = resume.user.userprofile
     skill_tags = SkillsTag.objects.prefetch_related('tags').all().distinct()
     portfolios = Portfolio.objects.prefetch_related('images').filter(resume=resume)
+    # features = Feature.objects.filter(portfolio__resume=1)
     skills = Skills.objects.prefetch_related('tag').filter(resume=resume)
     context = {
         "resume": resume,
@@ -21,13 +22,17 @@ def resume_view(request):
         "skills": skills,
         "request": request
     }
-    print(dir(request))
+
     return render(request, 'pages/home.html', context)
 
 
-def portfolio_view(request):
-    portfolios = Portfolio.objects.filter(resume_id=1)
-    data = serializers.serialize('json', portfolios)
-    data = JsonResponse({'data': data}, safe=False)
+def portfolio_view(request, pk):
+    portfolio = Portfolio.objects.filter(pk=pk)
 
-    return render(request, 'pages/home.html', {'data': data})
+    if request.is_ajax():
+        portfolio = {
+            'id': portfolio.id,
+            'title': portfolio.title,
+            'description': portfolio.description,
+        }
+    return JsonResponse({'portfolio': portfolio})

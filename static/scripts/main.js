@@ -14,20 +14,30 @@ const accordion = document.querySelector('#accordionEx')
 const carouselItem = document.querySelector('#carousel-item')
 const portfolioSection = document.querySelector('.portfolio-section')
 const portfolioModal = document.querySelector('.modalPortfolio')
+const showPortfolio = document.querySelector('#portfolio-link')
+const portfolio = document.querySelector('.portfolio')
 
 // portfolio modal //
+showPortfolio.addEventListener('click', e=>{
+    e.preventDefault()
 
-// $.ajax({
-//     type: 'GET',
-//     url: '/portfolio/',
-//     success: function (response) {
-//         console.log(response)
-//     },
-//     error: function(error) {
-//         console.log(error)
-//     }
-//
-// });
+    $.ajax({
+    type: 'GET',
+    url: '/portfolio/',
+    success: function (response) {
+        console.log(response.data)
+    },
+    error: function(error) {
+        console.log(error)
+    }
+
+});
+})
+
+portfolio.addEventListener('hover', function(){
+    portfolio.classList.add('border border-secondary')
+})
+
 
 // tab container //
 
