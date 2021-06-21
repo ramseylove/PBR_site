@@ -14,6 +14,7 @@ django-ckeditor = "*"
 gunicorn = "*"
 dj-database-url = "*"
 python-dotenv = "*"
+django-admin-sortable2 = "==1.0"
 
 [dev-packages]
 django = "==3.2.3"
