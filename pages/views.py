@@ -3,7 +3,7 @@ from django.core.mail import send_mail, BadHeaderError, EmailMessage
 from django.http import JsonResponse
 from django.views.generic import View
 
-from .models import Resume, SkillsTag, Portfolio, Skills, Feature
+from .models import Resume, SkillsTag, Portfolio, PortfolioImages, Skills, Feature
 from .forms import ContactForm
 from accounts.models import UserProfile
 
@@ -49,12 +49,41 @@ def resume_view(request):
 
 
 def portfolio_view(request, pk):
-    portfolio = Portfolio.objects.filter(pk=pk)
+    p = Portfolio.objects.filter(pk=pk)
+    features_qs = Feature.objects.filter(portfolio_id=pk)
+    pi_qs = PortfolioImages.objects.filter(portfolio_id=pk)
+
+    features = []
+    p_images = []
 
     if request.is_ajax():
         portfolio = {
-            'id': portfolio.id,
-            'title': portfolio.title,
-            'description': portfolio.description,
+            'id': p.id,
+            'title': p.title,
+            'description': p.description,
+            'topic': p.topic,
+            'portfolio_pic': p.portfolio_pic,
+            'problem': p.problem,
+            'solution': p.solution,
+            'topics': p.get_topics,
         }
-    return JsonResponse({'portfolio': portfolio})
+        for feature in features_qs:
+            f = {
+                'title': feature.title,
+                'description': feature.description,
+                'portfolio': feature.portfolio.id,
+                'order': feature.order,
+            }
+            features.append(f)
+
+        for image in pi_qs:
+            item = {
+                'alt': image.alt,
+                'portfolio_image': image.portfolio_image.url,
+                'portfolio': image.portfolio.id,
+                'order': image.order,
+            }
+            p_images.append(image)
+
+
+    return JsonResponse({'portfolio': portfolio, 'features':features, 'images':p_images})
