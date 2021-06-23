@@ -240,25 +240,19 @@
                 {{ profile.contact_email }}
             </div>
           </div>
-          <div class="mt-5 d-print-none"><form action="https://formspree.io/f/xnqldjde" method="POST">
-              <div class="form-outline mb-4">
-                <input name="name" type="text" id="name" class="form-control" required/>
-                <label class="form-label" for="name">Name</label>
-              </div>
-              <div class="form-outline mb-4">
-                <input name="_replyto" type="email" id="email" class="form-control" required/>
-                <label class="form-label" for="email">Email address</label>
-              </div>
-              <div class="form-outline mb-4">
-                <textarea name="message" class="form-control" style="resize: none;" id="message" rows="4" required></textarea>
-                <label class="form-label" for="message">Message</label>
-              </div>
-                  <input type="hidden" name="_subject" id="email-subject" value="PBR Contact Form Submission">
+          <div class="mt-5 d-print-none">
+              <div id="alert-box"></div>
+              <form id="contact-form">
+                  {% csrf_token %}
+                  {{ form|crispy }}
               <button class="btn btn-info btn-block mb-4" type="submit">Send</button>
             </form>
           </div>
         </div>
-        <div class="col-md-7 d-print-none" data-aos="zoom-in" data-aos-delay="100"><iframe src="https://maps.google.com/maps?q=Salt%20Lake%20City%20&t=&z=13&ie=UTF8&iwloc=&output=embed" width="500" height="400" style="border:0;width:100%;" allowfullscreen="" loading="lazy"></iframe></div>
+        <div class="col-md-7 d-print-none">
+            <iframe src="https://maps.google.com/maps?q=Salt%20Lake%20City%20&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                    width="500" height="400" style="border:0;width:100%;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
       </div>
     </div>
   </div>
@@ -278,27 +272,35 @@
             <div class="modal-body">
               <div class="row">
                 <!--Carousel Wrapper-->
-                <div id="carouselIndicators" class="carousel slide" data-bs-ride="carousel">
+                <div id="portfolioCarouselIndicators-{{ p.id }}" class="carousel slide" data-bs-ride="carousel">
                   <div class="carousel-indicators">
                       {% for image in p.images.all %}
-                        <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="{{ image.id }}" class="active" aria-current="true" aria-label="Slide {{ image.id }}"></button>
+                      {% if forloop.first %}
+                        <button type="button" data-bs-target="#portfolioCarouselIndicators-{{ p.id }}" data-bs-slide-to="{{ forloop.counter }}"
+                                class="active" aria-current="true" aria-label="Slide {{ image.id }}"></button>
+                          {% else %}
+                          <button type="button" data-bs-target="#portfolioCarouselIndicators-{{ p.id }}" data-bs-slide-to="{{ forloop.counter }}"
+                                aria-label="Slide {{ image.id }}"></button>
+                          {% endif %}
                       {% endfor %}
                   </div>
-                    <div class="carousel-inner">
+                    <div class="carousel-inner" role="listbox">
                     <!--Slides-->
                         {% for image in p.images.all %}
-                          <div class="carousel-item {% if forloop.first %} active {% endif %}">
+                          <div class="carousel-item {% if forloop.first %}active{% endif %}" >
                               <img src="{{ image.portfolio_image.url }}" class="d-block w-100" alt="{{ image.alt }}">
                             </div>
                         {% endfor %}
                     </div>
                   <!--/.Slides-->
                       <!--Controls-->
-                      <button class="carousel-control-prev" type="button" data-bs-target="#carouselIndicators" data-bs-slide="prev">
+                      <button class="carousel-control-prev" type="button" data-bs-target="#portfolioCarouselIndicators-{{ p.id }}"
+                              data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Previous</span>
                       </button>
-                      <button class="carousel-control-next" type="button" data-bs-target="#carouselIndicators" data-bs-slide="next">
+                      <button class="carousel-control-next" type="button" data-bs-target="#portfolioCarouselIndicators-{{ p.id }}"
+                               data-bs-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Next</span>
                       </button>
@@ -308,7 +310,7 @@
               </div>
 
                 <div class="row">
-                    <h4 class="text-center">Features</h4>
+                    <h4 class="text-left p-1">Features</h4>
                 </div>
                 <!--Accordion wrapper-->
                 <div class="accordion accordion-flush" id="accordionEx" aria-multiselectable="false">
