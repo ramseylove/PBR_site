@@ -145,36 +145,21 @@
         <!-- Tabs content -->
           <div class="col-md-9">
             <div class="tab-content" id="v-pills-tabContent">
-            {% for tag in skill_tags %}
-              <div class="tab-pane fade shadow rounded bg-white {% if forloop.first %} show active {% endif %} p-5"
-                   id="v-pills-{{ tag.id }}" role="tabpanel" aria-labelledby="v-pills-tab">
-                <h4 class="font-italic mb-4">{{ tag.name }}</h4>
-                <div class="row justify-content-evenly">
-                    <ul class="list-group list-unstyled">
-                      {% if tag.tags.all|length < 4 %}
-                          {%  for skill in tag.tags.all  %}
-                              <div class="list-group-item col-md-6">
-                                <li class="font-italic text-muted mb-2">{{ skill.name|title }}</li>
+                {% for tag in skill_tags %}
+                  <div class="tab-pane fade shadow rounded bg-white {% if forloop.first %} show active {% endif %} p-5"
+                       id="v-pills-{{ tag.id }}" role="tabpanel" aria-labelledby="v-pills-tab">
+                    <h4 class="font-italic mb-4">{{ tag.name }}</h4>
+                      {%  for skill in tag.tags.all  %}
+                          {% if forloop.first  %}<div class="row justify-content-center">{% endif %}
+                              <div class="col-sm-4">
+                                <p class="font-italic text-muted mb-2">{{ skill.name|title }}</p>
                               </div>
-                          {% endfor %}
-                          </ul>
-                      {%  else %}
-                          {%  for skill in tag.tags.all  %}
-                              {% if forloop.counter|divisibleby:2 %}
-                                  <div class="list-group-item col-md-4 order-1">
-                                    <li class="font-italic text-muted mb-2">{{ skill.name|title }}</li>
-                                  </div>
-{#                              {% else %}#}
-                                <div class="list-group-item col-md-4 order-2">
-                                    <li class="font-italic text-muted mb-2">{{ skill.name|title }}</li>
-                                  </div>
-                              {% endif %}
-                          {% endfor %}
-                      {% endif %}
-                      </ul>
-                </div>
-              </div>
-            {% endfor %}
+                      {% if forloop.counter|divisibleby:2 %}</div><div class="row justify-content-center">{% endif %}
+                      {% if forloop.last and not forloop.counter|divisibleby:2 %}<div class="col-sm-4"></div>{% endif %}
+                      {% if forloop.last %}</div>{% endif %}
+                      {% endfor %}
+                  </div>
+                {% endfor %}
             </div>
           </div>
         <!-- // Tabs content -->
@@ -190,9 +175,11 @@
         {% for p in portfolios %}
             {% if forloop.counter == 1 or forloop.counter|divisibleby:3 %}
                 {% if p.features.all %}
+                    <span data-bs-toggle="tooltip" data-bs-placement="top" title="Click for info">
                     <div class="row g-0 portfolio" id="portfolio-link" data-bs-toggle="modal"
-                         data-bs-target="#portfolioModal-{{ p.id }}" style="cursor: pointer;">
+                         data-bs-target="#portfolioModal-{{ p.id }}" style="cursor: pointer;" >
                 {% else %}
+                    <span>
                     <div class="row g-0" >
                 {% endif %}
                 <div class="col-md-6">
@@ -206,11 +193,15 @@
                   </div>
                 </div>
               </div>
+                </span>
+                <hr class="mt-4 mb-3" />
             {% else %}
                 {% if p.features.all %}
+                    <span data-bs-toggle="tooltip" data-bs-placement="top" title="Click for info">
                     <div class="row g-0 portfolio-reverse" id="portfolio-link"
                          data-bs-toggle="modal" data-bs-target="#portfolioModal-{{ p.id }}" style="cursor: pointer;">
                 {% else %}
+                    <span>
                     <div class="row g-0 portfolio-reverse">
                 {% endif %}
                     <div class="col-md-6 d-flex align-items-center">
@@ -224,6 +215,8 @@
                         <img class="img-fluid" src="{{ p.portfolio_pic.url }}" width="800" height="500"/>
                     </div>
                 </div>
+                </span>
+                <hr class="mt-4 mb-3"/>
             {% endif %}
         {% endfor %}
     </div>
@@ -302,13 +295,13 @@
             <div class="modal-body">
               <div class="row">
                 <!--Carousel Wrapper-->
-                <div id="portfolioCarouselIndicators-{{ p.id }}" class="carousel slide" data-bs-ride="carousel">
+                <div id="portfolioCarouselIndicators-{{ p.id }}" class="carousel carousel-dark slide" data-bs-ride="carousel">
 
                     <div class="carousel-inner" >
                     <!--Slides-->
                         {% for image in p.images.all %}
                           <div class="carousel-item {% if forloop.first %}active{% endif %}" >
-                              <img src="{{ image.portfolio_image.url }}" class="d-block w-100" alt="{{ image.alt }}">
+                              <img src="{{ image.portfolio_image.url }}" class="d-block h-100" alt="{{ image.alt }}">
                             </div>
                         {% endfor %}
                     </div>
@@ -330,7 +323,7 @@
               </div>
 
                 <div class="row">
-                    <h4 class="text-left p-1">Features</h4>
+                    <h4 class="text-left p-2 mt-2">Special Features</h4>
                 </div>
                 <!--Accordion wrapper-->
                 <div class="accordion accordion-flush" id="accordionEx" aria-multiselectable="false">
@@ -342,9 +335,9 @@
                       <div class="accordion-button collapsed" type="button"
                            data-bs-toggle="collapse" data-bs-target="#collapse-{{ f.id }}" data-bs-parent="#accordionEx"
                            data-tab="{{ f.id }}" aria-expanded="true" aria-controls="collapseOne1">
-                        <h5 class="mb-0">
+                        <h6 class="mb-0">
                             {{ f.title }}
-                        </h5>
+                        </h6>
                       </div>
                     </div>
 
