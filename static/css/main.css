@@ -17,6 +17,18 @@
     background: #fff;
 }
 
+/* size change of carosouel image */
+.carousel .carousel-item {
+  height: 250px;
+}
+
+.carousel-item img {
+    display: block;
+    object-fit:cover;
+    margin-left: auto;
+    margin-right: auto;
+    min-height: 250px;
+}
 
 /* Add indicator arrow for the active tab */
 @media (min-width: 992px) {

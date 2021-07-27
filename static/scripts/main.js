@@ -25,6 +25,11 @@ const fromEmailInput = document.querySelector('#id_from_email')
 const messageInput = document.querySelector('#id_message')
 const csrf = document.getElementsByName('csrfmiddlewaretoken')
 
+// initialize tooltips
+// let tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+// let tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+//   return new bootstrap.Tooltip(tooltipTriggerEl)
+// })
 
 // alert box
 const handleAlert = (type, msg) => {
