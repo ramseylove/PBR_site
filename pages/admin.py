@@ -4,7 +4,7 @@ from adminsortable2.admin import SortableInlineAdminMixin
 from .models import Resume, Skills, SkillsTag, WorkExperience, Education, Portfolio, PortfolioImages, Feature
 
 
-class SkillsAdmin(admin.StackedInline):
+class SkillsAdmin(admin.TabularInline):
     model = Skills
     filter_horizontal = ('tag',)
     verbose_name_plural = 'Skills'
