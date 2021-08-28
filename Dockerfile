@@ -15,7 +15,6 @@ EXPOSE 8001
 # Set environment variables
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
-    SECRET_KEY=4bzi7s+810akxxbuatt1b@vi*acbt8_py83abk*h^hqlk_vun \
     PORT=8001
 
 RUN apt-get update \
@@ -23,9 +22,9 @@ RUN apt-get update \
     && pip install --upgrade pip \
     && apt-get clean
 
-COPY requirements.txt /app/requirements.txt
+COPY ./reqs /app/reqs
 
-RUN pip install -r requirements.txt
+RUN pip install -r reqs/prod-requirements.txt
 
 # Copy project
 COPY . /app
