@@ -20,5 +20,5 @@ jobs:
         uses: dokku/github-action@master
         with:
           branch: 'prod'
-          git_remote_url: 'ssh://dokku@ryanrvalentine.dev:pbr-site'
+          git_remote_url: 'ssh://dokku@ryanrvalentine.dev:22/pbr-site'
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
