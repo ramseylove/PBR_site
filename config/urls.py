@@ -18,15 +18,13 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 
-import os
-
 
 urlpatterns = [
     path('notadmin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
     path('', include('pages.urls')),
 ]
-if os.environ.get('ENVIRONMENT') != 'production':
+if settings.ENVIRONMENT != 'production':
     import debug_toolbar
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
