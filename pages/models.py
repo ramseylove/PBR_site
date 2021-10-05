@@ -83,6 +83,7 @@ class Portfolio(models.Model):
     tag = models.ManyToManyField(to=SkillsTag, related_name='skilltags')
     problem = RichTextField(verbose_name='The Problem', blank=True)
     solution = RichTextField(verbose_name='The Solution', blank=True)
+    repo_url = models.URLField(verbose_name="Repository Url", blank=True, null=True)
 
     def __str__(self):
         return self.title
