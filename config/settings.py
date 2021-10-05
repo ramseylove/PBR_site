@@ -176,7 +176,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
-if ENVIRONMENT == 'production' or 'docker_development':
+if ENVIRONMENT == 'production':
 
     AWS_ACCESS_KEY_ID = os.getenv('SPACES_SECRET_ACCESS_KEY')  # access key
     AWS_SECRET_ACCESS_KEY = os.getenv('SPACES_SECRET_ACCESS_TOKEN')  # secret
