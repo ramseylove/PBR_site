@@ -3,6 +3,15 @@
 from django.db import migrations, models
 
 
+def reorder(apps, schema_editor):
+    my_model = apps.get_model("config", "Portfolio")
+    order = 0
+    for item in my_model.objects.all():
+        order += 1
+        item.my_order = order
+        item.save()
+
+
 class Migration(migrations.Migration):
 
     dependencies = [
@@ -19,4 +28,5 @@ class Migration(migrations.Migration):
             name='view_order',
             field=models.PositiveSmallIntegerField(default=0),
         ),
+        migrations.RunPython(reorder),
     ]
