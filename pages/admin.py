@@ -1,5 +1,5 @@
 from django.contrib import admin
-from adminsortable2.admin import SortableInlineAdminMixin
+from adminsortable2.admin import SortableInlineAdminMixin, SortableAdminMixin
 
 from .models import Resume, Skills, SkillsTag, WorkExperience, Education, Portfolio, PortfolioImages, Feature
 
@@ -40,7 +40,7 @@ class FeatureAdmin(SortableInlineAdminMixin, admin.StackedInline):
     extra = 0
 
 
-class PortfolioAdmin(admin.ModelAdmin):
+class PortfolioAdmin(SortableAdminMixin, admin.ModelAdmin):
     inlines = (FeatureAdmin, PortfolioImagesAdmin,)
     model = Portfolio
     verbose_name_plural = 'Portfolio'
