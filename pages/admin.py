@@ -61,7 +61,7 @@ class ResumeAdmin(admin.ModelAdmin):
     get_name.admin_order_field = 'get_name'
 
 
-class SkillsTagAdmin(admin.ModelAdmin):
+class SkillsTagAdmin(SortableAdminMixin, admin.ModelAdmin):
     model = SkillsTag
     verbose_name_plural = 'Skill Tags'
 
