@@ -98,6 +98,7 @@
   </div>
 
 {#      Work Experience Section     #}
+{% if resume.work_experience_section %}
   <div class="shadow-1-strong bg-white my-5 p-5" id="experience">
     <div class="work-experience-section">
       <h2 class="h2 fw-light mb-4">Work Experience</h2>
@@ -123,6 +124,7 @@
       </div>
     </div>
   </div>
+{% endif %}
 
 
 {#      Skills section     #}
@@ -170,7 +172,7 @@
   {#    portfolio section    #}
 {% if portfolios %}
   <div class="shadow-1-strong bg-white my-5 p-5 d-print-none" id="portfolio">
-    <div class="portfolio-section">
+    <div class="portfolio-section ">
       <h2 class="h2 fw-light mb-4">Portfolio</h2>
         {% for p in portfolios %}
             {% if forloop.counter == 1 or forloop.counter|divisibleby:3 %}
@@ -183,7 +185,7 @@
                     <div class="row g-0" >
                 {% endif %}
                 <div class="col-md-6">
-                    <img class="img-fluid" src="{{ p.portfolio_pic.url }}" width="800" height="500"/>
+                    <img class="img-fluid mx-auto d-block" src="{{ p.portfolio_pic.url }}" />
                 </div>
                 <div class="col-md-6 d-flex align-items-center">
                   <div class="m-4 mt-md-2">
@@ -208,7 +210,7 @@
                          data-bs-toggle="modal" data-bs-target="#portfolioModal-{{ p.id }}" style="cursor: pointer;">
                 {% else %}
                     <span>
-                    <div class="row g-0 portfolio-reverse">
+                    <div class="row g-0 portfolio-reverse portfolio-item">
                 {% endif %}
                     <div class="col-md-6 d-flex align-items-center">
                       <div class="m-4 mt-md-2 text-end">
@@ -223,8 +225,8 @@
                       {% endif %}
                       </div>
                     </div>
-                    <div class="col-md-6">
-                        <img class="img-fluid" src="{{ p.portfolio_pic.url }}" width="800" height="500"/>
+                    <div class="col-md-6 ">
+                        <img class="img-fluid mx-auto d-block" src="{{ p.portfolio_pic.url }}" />
                     </div>
                 </div>
                 </span>
@@ -237,6 +239,7 @@
 
 
 {#      Education Section      #}
+{% if resume.education_section %}
   <div class="shadow-1-strong bg-white my-5 p-5" id="education">
     <div class="education-section">
       <h2 class="h2 fw-light mb-4">Education</h2>
@@ -261,6 +264,7 @@
       </div>
     </div>
   </div>
+{% endif %}
 
 
 {#      Contact Section     #}
