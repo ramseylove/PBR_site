@@ -21,9 +21,13 @@ class Resume(models.Model):
 
 class SkillsTag(models.Model):
     name = models.CharField(max_length=50)
+    view_order = models.PositiveSmallIntegerField(default=0, blank=False, null=False)
 
     def __str__(self):
         return self.name
+
+    class Meta(object):
+        ordering = ['view_order']
 
 
 class Skills(models.Model):
