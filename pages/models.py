@@ -9,6 +9,8 @@ from django.contrib.auth import get_user_model
 class Resume(models.Model):
     headline = models.CharField(verbose_name='Headline', max_length=120)
     about = RichTextField(verbose_name='About Me', blank=True)
+    education_section = models.BooleanField(verbose_name='Show Education', default=True)
+    work_experience_section = models.BooleanField(verbose_name='Show Work Experience', default=True)
     user = models.ForeignKey(get_user_model(), on_delete=models.PROTECT)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Created At')
     modified_at = models.DateTimeField(auto_now=True, verbose_name='Modified At', null=True, blank=True)
@@ -19,9 +21,13 @@ class Resume(models.Model):
 
 class SkillsTag(models.Model):
     name = models.CharField(max_length=50)
+    view_order = models.PositiveSmallIntegerField(default=0, blank=False, null=False)
 
     def __str__(self):
         return self.name
+
+    class Meta(object):
+        ordering = ['view_order']
 
 
 class Skills(models.Model):
@@ -84,9 +90,13 @@ class Portfolio(models.Model):
     problem = RichTextField(verbose_name='The Problem', blank=True)
     solution = RichTextField(verbose_name='The Solution', blank=True)
     repo_url = models.URLField(verbose_name="Repository Url", blank=True, null=True)
+    view_order = models.PositiveSmallIntegerField(default=0, blank=False, null=False)
 
     def __str__(self):
         return self.title
+
+    class Meta(object):
+        ordering = ['view_order']
 
     def get_topics(self):
         top = self.topic.split(',')
