@@ -11,8 +11,8 @@ from accounts.models import UserProfile
 def resume_view(request):
     resume = Resume.objects.select_related('user__userprofile').get(pk=1)
     profile = resume.user.userprofile
-    skill_tags = SkillsTag.objects.prefetch_related('tags').all().distinct()
-    portfolios = Portfolio.objects.prefetch_related('images').filter(resume=resume)
+    skill_tags = SkillsTag.objects.prefetch_related('tags').all().distinct().order_by('view_order')
+    portfolios = Portfolio.objects.prefetch_related('images').filter(resume=resume).order_by('view_order')
     skills = Skills.objects.prefetch_related('tag').filter(resume=resume)
     form = ContactForm(request.POST or None)
 

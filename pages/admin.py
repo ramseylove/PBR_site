@@ -1,10 +1,10 @@
 from django.contrib import admin
-from adminsortable2.admin import SortableInlineAdminMixin
+from adminsortable2.admin import SortableInlineAdminMixin, SortableAdminMixin
 
 from .models import Resume, Skills, SkillsTag, WorkExperience, Education, Portfolio, PortfolioImages, Feature
 
 
-class SkillsAdmin(admin.StackedInline):
+class SkillsAdmin(admin.TabularInline):
     model = Skills
     filter_horizontal = ('tag',)
     verbose_name_plural = 'Skills'
@@ -40,7 +40,7 @@ class FeatureAdmin(SortableInlineAdminMixin, admin.StackedInline):
     extra = 0
 
 
-class PortfolioAdmin(admin.ModelAdmin):
+class PortfolioAdmin(SortableAdminMixin, admin.ModelAdmin):
     inlines = (FeatureAdmin, PortfolioImagesAdmin,)
     model = Portfolio
     verbose_name_plural = 'Portfolio'
@@ -61,7 +61,7 @@ class ResumeAdmin(admin.ModelAdmin):
     get_name.admin_order_field = 'get_name'
 
 
-class SkillsTagAdmin(admin.ModelAdmin):
+class SkillsTagAdmin(SortableAdminMixin, admin.ModelAdmin):
     model = SkillsTag
     verbose_name_plural = 'Skill Tags'
 
