@@ -1,6 +1,7 @@
 {% extends '_base.html' %}
 {% load crispy_forms_tags %}
 {% load static %}
+{% load page_tags %}
 
 
 {% block content %}
@@ -151,16 +152,22 @@
                   <div class="tab-pane fade shadow rounded bg-white {% if forloop.first %} show active {% endif %} p-5"
                        id="v-pills-{{ tag.id }}" role="tabpanel" aria-labelledby="v-pills-tab">
                     <h4 class="font-italic mb-4">{{ tag.name }}</h4>
-                      {%  for skill in tag.tags.all  %}
-                          {% if forloop.first  %}<div class="row justify-content-center">{% endif %}
-                              <div class="col-sm-4">
-                                <p class="font-italic text-muted mb-2">{{ skill.name|title }}</p>
-                              </div>
-                      {% if forloop.counter|divisibleby:2 %}</div><div class="row justify-content-center">{% endif %}
-                      {% if forloop.last and not forloop.counter|divisibleby:2 %}<div class="col-sm-4"></div>{% endif %}
-                      {% if forloop.last %}</div>{% endif %}
+                    <div class="col-12">
+                        {%  for chunk in tag.tags.all|as_chunks:3  %}
+                            <div class="row justify-content-center">
+                                {% for skill in chunk %}
+                                    <div class="col-sm-4">
+                                    {{ skill.name }}
+                                    </div>
+                                {% endfor %}
+                            {% if forloop.last and not forloop.counter0|divisibleby:3 %}
+                                <div class="col-sm-4"></div>
+                                <div class="col-sm-4"></div>
+                            {% endif %}
+                            </div>
                       {% endfor %}
-                  </div>
+                    </div>
+                </div>
                 {% endfor %}
             </div>
           </div>
