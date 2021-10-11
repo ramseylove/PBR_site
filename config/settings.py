@@ -178,11 +178,11 @@ STATICFILES_DIRS = [
 
 if ENVIRONMENT == 'production':
 
-    AWS_ACCESS_KEY_ID = os.getenv('SPACES_ACCESS_KEY_ID')  # access key
-    AWS_SECRET_ACCESS_KEY = os.getenv('SPACES_SECRET_ACCESS_KEY')  # secret
+    AWS_ACCESS_KEY_ID = os.getenv('SPACES_SECRET_ACCESS_KEY')  # access key
+    AWS_SECRET_ACCESS_KEY = os.getenv('SPACES_SECRET_ACCESS_TOKEN')  # secret
     AWS_STORAGE_BUCKET_NAME = os.getenv('SPACES_BUCKET_NAME')
-    AWS_S3_REGION_NAME = 'sfo3'
-    AWS_S3_ENDPOINT_URL = f'https://{AWS_S3_REGION_NAME}.digitaloceanspaces.com'
+    AWS_S3_REGION_NAME = 'us-east-1'
+    AWS_S3_ENDPOINT_URL = f'https://{AWS_S3_REGION_NAME}.linodeobjects.com'
     AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
     AWS_DEFAULT_ACL = 'public-read'
     # s3 static settings
@@ -194,7 +194,7 @@ if ENVIRONMENT == 'production':
     MEDIA_URL = f'{AWS_S3_ENDPOINT_URL}/{PUBLIC_MEDIA_LOCATION}/'
     DEFAULT_FILE_STORAGE = 'config.custom_storages.MediaStorage'
     AWS_QUERYSTRING_AUTH = False  # ckeditor with AWS
-    STATIC_ROOT = f'{AWS_STORAGE_BUCKET_NAME}.{AWS_S3_REGION_NAME}.digitaloceanspaces.com/{STATIC_LOCATION}'
+    STATIC_ROOT = f'{AWS_STORAGE_BUCKET_NAME}.{AWS_S3_REGION_NAME}.linodeobjects.com/{STATIC_LOCATION}'
     # CKEDITOR_BASEPATH = STATIC_URL + 'ckeditor/ckeditor/'
 else:
     STATIC_URL = '/static/'

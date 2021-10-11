@@ -1,0 +1,534 @@
+[
+{
+  "model": "pages.skillstag",
+  "pk": 1,
+  "fields": {
+    "name": "Web Development"
+  }
+},
+{
+  "model": "pages.skillstag",
+  "pk": 2,
+  "fields": {
+    "name": "Product Management"
+  }
+},
+{
+  "model": "pages.skillstag",
+  "pk": 3,
+  "fields": {
+    "name": "Systems Admin"
+  }
+},
+{
+  "model": "pages.skills",
+  "pk": 1,
+  "fields": {
+    "name": "Writing",
+    "level": 75,
+    "resume": 1,
+    "tag": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "pages.skills",
+  "pk": 2,
+  "fields": {
+    "name": "Arithmetic",
+    "level": 100,
+    "resume": 1,
+    "tag": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "pages.skills",
+  "pk": 3,
+  "fields": {
+    "name": "Reading",
+    "level": 15,
+    "resume": 1,
+    "tag": [
+      2
+    ]
+  }
+},
+{
+  "model": "pages.skills",
+  "pk": 4,
+  "fields": {
+    "name": "Head Scratching",
+    "level": 99,
+    "resume": 1,
+    "tag": [
+      2
+    ]
+  }
+},
+{
+  "model": "pages.skills",
+  "pk": 5,
+  "fields": {
+    "name": "Smelling",
+    "level": 55,
+    "resume": 1,
+    "tag": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "pages.skills",
+  "pk": 6,
+  "fields": {
+    "name": "Partying",
+    "level": 1,
+    "resume": 1,
+    "tag": [
+      1,
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "pages.skills",
+  "pk": 7,
+  "fields": {
+    "name": "Looking good",
+    "level": 1,
+    "resume": 1,
+    "tag": [
+      1,
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "pages.workexperience",
+  "pk": 1,
+  "fields": {
+    "job_title": "Mayor of New York",
+    "employer": "New York",
+    "description": "<p>&bull; Do things&nbsp;</p>\r\n\r\n<p>* Do other things</p>\r\n\r\n<p>* Do nothing</p>",
+    "start_date": "2018-05-25",
+    "end_date": "2021-05-25",
+    "current": true,
+    "resume": 1
+  }
+},
+{
+  "model": "pages.education",
+  "pk": 1,
+  "fields": {
+    "course": "NYC",
+    "institute": "Mayorship",
+    "description": "",
+    "start_date": "2012-09-25",
+    "end_date": "2016-05-25",
+    "current": false,
+    "resume": 1
+  }
+},
+{
+  "model": "pages.education",
+  "pk": 2,
+  "fields": {
+    "course": "High School Graduation",
+    "institute": "Lincoln High School",
+    "description": "<p>General High School Education</p>",
+    "start_date": "2002-09-04",
+    "end_date": "2005-05-26",
+    "current": false,
+    "resume": 1
+  }
+},
+{
+  "model": "pages.portfolio",
+  "pk": 1,
+  "fields": {
+    "title": "Website",
+    "description": "<p>This website is the headquarters to all things resume and portfolio.&nbsp;</p>",
+    "topic": "JavaScript, Python, React, Django",
+    "resume": 1,
+    "portfolio_pic": "portfolio_pics/Screen_Shot_2021-05-26_at_5.23.05_PM.png",
+    "problem": "",
+    "solution": "",
+    "tag": []
+  }
+},
+{
+  "model": "pages.portfolio",
+  "pk": 2,
+  "fields": {
+    "title": "Project Management Site",
+    "description": "<p>Site to track all your projects and issues with software things. Please check it out</p>",
+    "topic": "Python, Django REST Framework, JavaScript",
+    "resume": 1,
+    "portfolio_pic": "portfolio_pics/Screen_Shot_2021-05-26_at_5.25.07_PM.png",
+    "problem": "",
+    "solution": "",
+    "tag": []
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "h49dhufaxcouotqj3r8bu8c8k5i4iik6",
+  "fields": {
+    "session_data": ".eJxVjEEOwiAQRe_C2hBgoIBL956BMMxUqoYmpV0Z765NutDtf-_9l0h5W2vaOi9pInEWWpx-N8zlwW0HdM_tNssyt3WZUO6KPGiX15n4eTncv4Oae_3W7J0fjLZahdEMHHNwsWgoQEAFmYICazB4Q8EzjgrRagfA0ZFlx168P85qN60:1llfQE:CDrrwkwiNtGaTGqxjcP4W67ktH_0Qop5hFHtCjNiiao",
+    "expire_date": "2021-06-08T22:21:10.733Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "rqjivsl32wfwium91fvyja9ckt79isy1",
+  "fields": {
+    "session_data": ".eJxVjEEOwiAQRe_C2hBgoIBL956BMMxUqoYmpV0Z765NutDtf-_9l0h5W2vaOi9pInEWWpx-N8zlwW0HdM_tNssyt3WZUO6KPGiX15n4eTncv4Oae_3W7J0fjLZahdEMHHNwsWgoQEAFmYICazB4Q8EzjgrRagfA0ZFlx168P85qN60:1lr7iA:5XCa37szDJ5x_b99qZB-krjfc6eL4dDIUEM70sESi_U",
+    "expire_date": "2021-06-23T23:34:14.521Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "yg8bd4vkn0vnpg6cgwjqjnk9in8s32or",
+  "fields": {
+    "session_data": ".eJxVjEEOwiAQRe_C2hBgoIBL956BMMxUqoYmpV0Z765NutDtf-_9l0h5W2vaOi9pInEWWpx-N8zlwW0HdM_tNssyt3WZUO6KPGiX15n4eTncv4Oae_3W7J0fjLZahdEMHHNwsWgoQEAFmYICazB4Q8EzjgrRagfA0ZFlx168P85qN60:1lyLmw:s_wdt_PMvCdygQWaNj_uJgLyzxQmydMIcpkne0K_5nA",
+    "expire_date": "2021-07-13T22:01:02.125Z"
+  }
+},
+{
+  "model": "accounts.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$260000$LNKHuZXS66GcOTvxurPJPb$nhIxHFstjl1etqDZFkA1FO1J7M+rC2J19cgZetDnkj8=",
+    "last_login": "2021-06-29T22:01:02.101Z",
+    "is_superuser": true,
+    "email": "ryan@atriadev.com",
+    "is_active": true,
+    "is_admin": true,
+    "is_staff": true,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$260000$OnaI05AXxTL6AWJGBxcSqB$gBQwgtJYE82mJDb61+hKMG6QQ31CKSQ4negSBg/ZFAU=",
+    "last_login": null,
+    "is_superuser": false,
+    "email": "meyeryan@outlook.com",
+    "is_active": true,
+    "is_admin": false,
+    "is_staff": false,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.userprofile",
+  "pk": 1,
+  "fields": {
+    "name": null,
+    "contact_email": null,
+    "birthdate": null,
+    "phone": null,
+    "city": null,
+    "state": null,
+    "timezone": null,
+    "linkedin": null,
+    "twitter": null,
+    "github": null,
+    "resume": "",
+    "profile_pic": "default.png"
+  }
+},
+{
+  "model": "accounts.userprofile",
+  "pk": 2,
+  "fields": {
+    "name": "Ryan R Valentine",
+    "contact_email": "meyeryan@outlook.com",
+    "birthdate": "1984-05-25",
+    "phone": "9205551212",
+    "city": "Salt Lake City",
+    "state": "UT",
+    "timezone": "America/Denver",
+    "linkedin": "https://www.linkedin.com/in/ryan-r-valentine/",
+    "twitter": null,
+    "github": "https://github.com/ramseylove",
+    "resume": "",
+    "profile_pic": "profile_pics/me_0001.jpg"
+  }
+},
+{
+  "model": "pages.resume",
+  "pk": 1,
+  "fields": {
+    "headline": "Live to develop",
+    "about": "<p>I live in a little sleepy town of New York. Theres never anything to do here except develop new products</p>",
+    "user": [
+      "meyeryan@outlook.com"
+    ],
+    "created_at": "2021-05-25T23:02:59.842Z",
+    "modified_at": "2021-06-29T22:02:41.011Z"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 1,
+  "fields": {
+    "action_time": "2021-05-25T22:58:52.315Z",
+    "user": [
+      "ryan@atriadev.com"
+    ],
+    "content_type": [
+      "accounts",
+      "customuser"
+    ],
+    "object_id": "2",
+    "object_repr": "meyeryan@outlook.com",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"user profile\", \"object\": \"Ryan Ramsey\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 2,
+  "fields": {
+    "action_time": "2021-05-25T23:02:59.846Z",
+    "user": [
+      "ryan@atriadev.com"
+    ],
+    "content_type": [
+      "pages",
+      "resume"
+    ],
+    "object_id": "1",
+    "object_repr": "Resume object (1)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"skills\", \"object\": \"Skills object (1)\"}}, {\"added\": {\"name\": \"skills\", \"object\": \"Skills object (2)\"}}, {\"added\": {\"name\": \"skills\", \"object\": \"Skills object (3)\"}}, {\"added\": {\"name\": \"skills\", \"object\": \"Skills object (4)\"}}, {\"added\": {\"name\": \"work experience\", \"object\": \"WorkExperience object (1)\"}}, {\"added\": {\"name\": \"education\", \"object\": \"Education object (1)\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 3,
+  "fields": {
+    "action_time": "2021-05-26T19:52:32.095Z",
+    "user": [
+      "ryan@atriadev.com"
+    ],
+    "content_type": [
+      "accounts",
+      "customuser"
+    ],
+    "object_id": "2",
+    "object_repr": "meyeryan@outlook.com",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"name\": \"user profile\", \"object\": \"Ryan Ramsey\", \"fields\": [\"LinkedIn Profile Url\", \"Github\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 4,
+  "fields": {
+    "action_time": "2021-05-26T20:43:46.989Z",
+    "user": [
+      "ryan@atriadev.com"
+    ],
+    "content_type": [
+      "pages",
+      "resume"
+    ],
+    "object_id": "1",
+    "object_repr": "Resume object (1)",
+    "action_flag": 2,
+    "change_message": "[{\"added\": {\"name\": \"skills\", \"object\": \"Skills object (5)\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 5,
+  "fields": {
+    "action_time": "2021-05-26T20:45:21.341Z",
+    "user": [
+      "ryan@atriadev.com"
+    ],
+    "content_type": [
+      "pages",
+      "resume"
+    ],
+    "object_id": "1",
+    "object_repr": "Resume object (1)",
+    "action_flag": 2,
+    "change_message": "[{\"added\": {\"name\": \"education\", \"object\": \"Education object (2)\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 6,
+  "fields": {
+    "action_time": "2021-05-26T21:21:17.961Z",
+    "user": [
+      "ryan@atriadev.com"
+    ],
+    "content_type": [
+      "accounts",
+      "customuser"
+    ],
+    "object_id": "2",
+    "object_repr": "meyeryan@outlook.com",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"name\": \"user profile\", \"object\": \"Ryan R Valentine\", \"fields\": [\"Name\", \"City\", \"State\", \"Timezone\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 7,
+  "fields": {
+    "action_time": "2021-05-26T23:16:47.636Z",
+    "user": [
+      "ryan@atriadev.com"
+    ],
+    "content_type": [
+      "pages",
+      "resume"
+    ],
+    "object_id": "1",
+    "object_repr": "Resume object (1)",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 8,
+  "fields": {
+    "action_time": "2021-05-26T23:25:25.095Z",
+    "user": [
+      "ryan@atriadev.com"
+    ],
+    "content_type": [
+      "pages",
+      "resume"
+    ],
+    "object_id": "1",
+    "object_repr": "Resume object (1)",
+    "action_flag": 2,
+    "change_message": "[{\"added\": {\"name\": \"portfolio\", \"object\": \"Portfolio object (1)\"}}, {\"added\": {\"name\": \"portfolio\", \"object\": \"Portfolio object (2)\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 9,
+  "fields": {
+    "action_time": "2021-06-01T22:05:52.648Z",
+    "user": [
+      "ryan@atriadev.com"
+    ],
+    "content_type": [
+      "pages",
+      "skillstag"
+    ],
+    "object_id": "1",
+    "object_repr": "SkillsTag object (1)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 10,
+  "fields": {
+    "action_time": "2021-06-01T22:11:27.243Z",
+    "user": [
+      "ryan@atriadev.com"
+    ],
+    "content_type": [
+      "pages",
+      "skillstag"
+    ],
+    "object_id": "2",
+    "object_repr": "Product Management",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 11,
+  "fields": {
+    "action_time": "2021-06-01T22:13:32.386Z",
+    "user": [
+      "ryan@atriadev.com"
+    ],
+    "content_type": [
+      "pages",
+      "resume"
+    ],
+    "object_id": "1",
+    "object_repr": "meyeryan@outlook.com",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"name\": \"skills\", \"object\": \"Writing\", \"fields\": [\"Tag\"]}}, {\"changed\": {\"name\": \"skills\", \"object\": \"Arithmetic\", \"fields\": [\"Tag\"]}}, {\"changed\": {\"name\": \"skills\", \"object\": \"Reading\", \"fields\": [\"Tag\"]}}, {\"changed\": {\"name\": \"skills\", \"object\": \"Head Scratching\", \"fields\": [\"Tag\"]}}, {\"changed\": {\"name\": \"skills\", \"object\": \"Smelling\", \"fields\": [\"Tag\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 12,
+  "fields": {
+    "action_time": "2021-06-01T22:15:14.366Z",
+    "user": [
+      "ryan@atriadev.com"
+    ],
+    "content_type": [
+      "pages",
+      "skillstag"
+    ],
+    "object_id": "3",
+    "object_repr": "Systems Admin",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 13,
+  "fields": {
+    "action_time": "2021-06-29T22:02:02.083Z",
+    "user": [
+      "ryan@atriadev.com"
+    ],
+    "content_type": [
+      "pages",
+      "resume"
+    ],
+    "object_id": "1",
+    "object_repr": "Ryan R Valentine",
+    "action_flag": 2,
+    "change_message": "[{\"added\": {\"name\": \"skills\", \"object\": \"Partying\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 14,
+  "fields": {
+    "action_time": "2021-06-29T22:02:41.044Z",
+    "user": [
+      "ryan@atriadev.com"
+    ],
+    "content_type": [
+      "pages",
+      "resume"
+    ],
+    "object_id": "1",
+    "object_repr": "Ryan R Valentine",
+    "action_flag": 2,
+    "change_message": "[{\"added\": {\"name\": \"skills\", \"object\": \"Looking good\"}}]"
+  }
+}
+]

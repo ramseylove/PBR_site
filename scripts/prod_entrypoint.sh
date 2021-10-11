@@ -11,7 +11,10 @@ then
     echo "PostgreSQL started"
 fi
 
+# migrate db if needed
 python manage.py migrate
+
+# collect static files to storages
 python manage.py collectstatic --noinput
 
 # Prepare log files and start outputting logs to stdout

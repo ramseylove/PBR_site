@@ -1,12 +1,37 @@
-## Template for starting Django projects with custom user and profile. 
+## My Resume - Portfolio site built in Django
+It currently can only have a single resume but future plans to allow for multiple different resumes seperated by sub-domains
+- Core was built with my django template
 
-Builds in local venv with pipenv and sqlite, or with postgres in docker containers with docker-compose.
+### Sections
+- About
+- Work experience
+- Education
+- Skills
+- Portfolio
+- Contact
 
-### Need to Run MakeMigrations on Accounts before Migrating
+### Tech
+- Docker-Compose - used for development environment
+- Dockerfile - optimized with slim-buster image
+- DB in Postgres 11
+- Emails sent via sendgrid
+- Static and media files hosted with s3 compatible storage
+- Makefile - rules written to make development in docker easier
+- Github Action setup to push to linode
+- Hosted on Dokku via Linode
 
-Using pipenv with dependencies:
-* django = "==3.2.3"
-* psycopg2-binary = "*"
-* django-storages = "==1.11.1"
-* boto3 = "==1.17.43"
-* pillow = "==8.2.0"
+### Deploy to Dokku with github action
+*Requirements* 
+- define SSH_PRIVATE_KEY in github secrets
+- setup new app on dokku and create new ssh key for deployment
+
+### To get started with development define dev.env in /envs folder
+SECRET_KEY= \
+ENVIRONMENT=docker_development \
+DEBUG= \
+ALLOWED_HOSTS=127.0.0.1,localhost,0.0.0.0 \
+USE_S3=False \
+SEND_GRID_KEY= \
+DB_USER=postgres \
+DB_PORT=5432 \
+DB_HOST=db 
