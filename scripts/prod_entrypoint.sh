@@ -15,7 +15,7 @@ fi
 python manage.py migrate
 
 # collect static files to storages
-python manage.py collectstatic --noinput
+#python manage.py collectstatic --noinput
 
 # Prepare log files and start outputting logs to stdout
 mkdir /app/logs
