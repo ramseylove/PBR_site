@@ -1,11 +1,15 @@
 from django.shortcuts import render
 from django.core.mail import send_mail, BadHeaderError, EmailMessage
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.views.generic import View
 
 from .models import Resume, SkillsTag, Portfolio, Skills, Feature
 from .forms import ContactForm
 from accounts.models import UserProfile
+
+
+def healthy(request):
+    return HttpResponse('Im healthy')
 
 
 def resume_view(request):
