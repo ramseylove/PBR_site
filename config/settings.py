@@ -41,12 +41,14 @@ INSTALLED_APPS = [
     # my apps
     'accounts.apps.AccountsConfig',
     'pages.apps.PagesConfig',
+    'api.apps.ApiConfig',
 
     # 3rd Party Apps
     'crispy_forms',
     'ckeditor',
     'storages',
     'adminsortable2',
+    'rest_framework',
 
     # built-in apps
     'django.contrib.admin',
@@ -136,6 +138,10 @@ else:
         }
     }
 
+# DRF config
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [ 'rest_framework.permissions.AllowAny',], # set for initial development
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators

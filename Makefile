@@ -32,3 +32,5 @@ req:
 	pipenv lock -r --keep-outdated --requirements > requirements.txt
 shell:
 	docker-compose -f $(dockerComposeFile) run --rm web python manage.py shell_plus
+startapp:
+	docker-compose -f $(dockerComposeFile) run --rm web python manage.py startapp ${app}

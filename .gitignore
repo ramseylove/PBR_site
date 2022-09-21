@@ -3,6 +3,8 @@
 .bash_history
 ## ignore editor settings
 .vscode/
+.devcontainer
+.vscode-server
 .idea/
 # ignore dotenv file
 envs/*.env
