@@ -1,0 +1,109 @@
+{% load static %}
+{% comment %} <div class="shadow-1-strong bg-white my-5" id="intro">
+    <div class="bg-info text-white">
+      <div class="cover bg-image"><img src="{% static 'images/slc_sunset.jpg' %}"/>
+        <div class="mask" style="background-color: rgba(0, 0, 0, 0.7);backdrop-filter: blur(2px);">
+          <div class="text-center p-5">
+            <div class="avatar p-1 " data-aos="zoom-in" data-aos-delay="200">
+                <img class="img-thumbnail shadow-2-strong" src="{{ profile.profile_pic.url }}" width="160" height="160"/>
+            </div>
+            <div class="header-bio mt-3">
+              <div>
+                <h2 class="h1">{{ profile.name }}</h2>
+                <p>{{ resume.headline|safe }}</p>
+              </div>
+              <div class="header-social mb-3 d-print-none" data-aos="zoom-in" data-aos-delay="200">
+                <nav role="navigation">
+                  <ul class="nav justify-content-center">
+                      {% if profile.twitter %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ profile.twitter }}" title="Twitter" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-twitter"></i><span class="menu-title sr-only">Twitter</span></a>
+                    </li>
+                      {% endif %}
+                      {% if profile.linkedin %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ profile.linkedin }}" title="LinkedIn" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-linkedin"></i><span class="menu-title sr-only">LinkedIn</span></a>
+                    </li>
+                      {% endif %}
+                      {% if profile.github %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ profile.github }}" title="Github" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-github"></i><span class="menu-title sr-only">Github</span></a>
+                    </li>
+                      {% endif %}
+                  </ul>
+                </nav>
+              </div>
+              <div class="d-print-none">
+                  {% if profile.resume %}
+                    <a class="btn btn-outline-light btn-lg shadow-sm mt-1 me-3" href="{{ profile.resume.url }}">Download Resume</a>
+                  {% endif %}
+                  <a class="btn btn-info btn-lg shadow-sm mt-1" href="#contact">Contact Me</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> {% endcomment %}
+
+  {% comment %} new cover container {% endcomment %}
+<div class="cover-container">
+<div class="cover">
+    <img src="{% static 'images/slc_sunset.jpg' %}"/>
+    <div class="cover__box">
+    <div class="cover__profile-pic-box">
+        <img class="cover__profile-pic" src="{{ profile.profile_pic.url }}" width="160" height="160"/>
+    </div>
+    <div class="cover__profile-name">{{ profile.name }}</div>
+    <div class="cover__profile-title">{{ resume.headline|safe }}</div>
+    <div class="cover__profile-social">
+        <svg class="cover__profile-social__icon">
+        <use
+            xlink:href="{% static 'images/sprite.svg#icon-instagram' %}"
+            alt="instagram"
+            class="cover__profile-social__instagram"
+        ></use>
+        </svg>
+        {% if profile.twitter %}
+        <svg class="cover__profile-social__icon">
+        <use
+            xlink:href="images/sprite.svg#icon-twitter"
+            alt="twitter"
+            class="cover__profile-social__twitter"
+        ></use>
+        </svg>
+        {% endif %}
+        {% if profile.linkedin %}
+        <svg class="cover__profile-social__icon">
+        <use
+            xlink:href="images/sprite.svg#icon-linkedin"
+            alt="linkedin"
+            class="cover__profile-social__linkedin"
+        ></use>
+        </svg>
+        {% endif %}
+        {% if profile.github %}
+        <svg class="cover__profile-social__icon">
+        <use
+            xlink:href="images/sprite.svg#icon-github"
+            alt="github"
+            class="cover__profile-social__github"
+        ></use>
+        </svg>
+        {% endif %}
+    </div>
+    <div class="cover__profile-actions">
+        {% if profile.resume %}
+        <button class="cover__profile-actions__primary-btn" href="{{ profile.resume.url }}">
+        Download Resume
+        </button>
+        {% endif %}
+        <button class="cover__profile-actions__secondary-btn" href="#contact">
+        Contact Me
+        </button>
+    </div>
+    </div>
+</div>
+</div>

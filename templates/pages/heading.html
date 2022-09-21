@@ -1,29 +1,27 @@
-<header class="d-print-none">
-  <div class="container text-center text-lg-left">
-    <div class="pt-4 clearfix">
-      <h1 class="site-title mb-0">{{ resume.user.userprofile.name }}</h1>
-      <div class="site-nav">
-        <nav role="navigation">
-          <ul class="nav justify-content-center">
-            <li class="nav-item"><a class="nav-link" href="#about" title="About"><span class="menu-title">About</span></a>
+<header class="header">
+  <div class="header-nav">
+
+      <h1 class="header-nav__title">{{ resume.user.userprofile.name }}</h1>
+
+        <nav role="navigation" class="header-nav__bar">
+          <ul class="header-nav__list">
+            <li class="header-nav__item"><a class="nav-link" href="#about" title="About"><span class="menu-title">About</span></a>
             </li>
           {% if resume.work_experience_section %}
-            <li class="nav-item"><a class="nav-link" href="#experience" title="Experience"><span class="menu-title">Experience</span></a>
+            <li class="header-nav__item"><a class="nav-link" href="#experience" title="Experience"><span class="menu-title">Experience</span></a>
             </li>
           {% endif %}
               {% if resume.education_section %}
-            <li class="nav-item"><a class="nav-link" href="#education" title="Education"><span class="menu-title">Education</span></a>
+            <li class="header-nav__item"><a class="nav-link" href="#education" title="Education"><span class="menu-title">Education</span></a>
             </li>
               {% endif %}
-              <li class="nav-item"><a class="nav-link" href="#skills" title="Skills"><span class="menu-title">Skills</span></a>
+              <li class="header-nav__item"><a class="nav-link" href="#skills" title="Skills"><span class="menu-title">Skills</span></a>
             </li>
-            <li class="nav-item"><a class="nav-link" href="#portfolio" title="Portfolio"><span class="menu-title">Portfolio</span></a>
+            <li class="header-nav__item"><a class="nav-link" href="#portfolio" title="Portfolio"><span class="menu-title">Portfolio</span></a>
             </li>
-            <li class="nav-item"><a class="nav-link" href="#contact" title="Contact"><span class="menu-title">Contact</span></a>
+            <li class="header-nav__item"><a class="nav-link" href="#contact" title="Contact"><span class="menu-title">Contact</span></a>
             </li>
           </ul>
         </nav>
-      </div>
-    </div>
   </div>
 </header>

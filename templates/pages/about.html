@@ -1,0 +1,40 @@
+<div class="shadow-1-strong bg-white my-5 p-5" id="about">
+<div class="about-section">
+    <div class="row">
+    <div class="col-md-6">
+        <h2 class="h2 fw-light mb-4">About Me</h2>
+        <p>{{ resume.about|safe }}</p>
+    </div>
+{#      Bio info Section            #}
+    <div class="col-md-5 offset-lg-1">
+        <div class="row mt-2">
+        <h2 class="h2 fw-light mb-4">Bio</h2>
+            {% if profile.contact_email %}
+            <div class="col-sm-5">
+                <div class="pb-2 fw-bolder"><i class="far fa-envelope pe-2 text-muted" style="width:24px;opacity:0.85;"></i> Email</div>
+            </div>
+            <div class="col-sm-7">
+                <div class="pb-2">{{ profile.contact_email }}</div>
+            </div>
+            {% endif %}
+        {% if profile.phone %}
+            <div class="col-sm-5">
+                <div class="pb-2 fw-bolder"><i class="fas fa-phone pe-2 text-muted" style="width:24px;opacity:0.85;"></i> Phone</div>
+            </div>
+            <div class="col-sm-7">
+                <div class="pb-2">{{ profile.phone }}</div>
+            </div>
+        {% endif %}
+        {% if profile.city or profile.state %}
+            <div class="col-sm-5">
+                <div class="pb-2 fw-bolder"><i class="fas fa-map-marker-alt pe-2 text-muted" style="width:24px;opacity:0.85;"></i> Location</div>
+            </div>
+            <div class="col-sm-7">
+                <div class="pb-2">{{ profile.city }}, {{ profile.state }}</div>
+            </div>
+        {% endif %}
+        </div>
+    </div>
+    </div>
+</div>
+</div>

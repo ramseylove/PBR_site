@@ -14,31 +14,32 @@
     <noscript>
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&amp;family=Roboto:wght@300;400;500;700&amp;display=swap"/>
     </noscript>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <link href="{% static 'css/font-awesome/css/all.min.css' %}" rel="stylesheet">
-    <link href="{% static 'css/mdb.min.css' %}" rel="stylesheet">
-    <link href="{% static 'css/aos.css' %}" rel="stylesheet">
-    <link href="{% static 'css/main.css' %}" rel="stylesheet">
-    <noscript>
-      <style type="text/css">
-        [data-aos] {
-            opacity: 1 !important;
-            transform: translate(0) scale(1) !important;
-        }
-      </style>
-    </noscript>
+    {% comment %} <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous"> {% endcomment %}
+    {% comment %} <link href="{% static 'css/font-awesome/css/all.min.css' %}" rel="stylesheet" /> {% endcomment %}
+    <link href="{% static 'css/style.css'%}" rel="stylesheet" />
+    
   {% endblock css %}
   </head>
-  <body class="bg-light" id="top">
+  <body id="top">
+    <div class="main-container">
     {% include 'pages/heading.html' %}
-    {% block content %} {% endblock content %}
+
+    <!-- {# Cover section #} -->
+    {% include 'pages/cover.html' %}
+    {% comment %} {% include 'pages/about.html' %}
+    {% include 'pages/experience.html' %}
+    {% include 'pages/skills.html' %}
+    {% include 'pages/portfolio.html' %}
+    {% include 'pages/education.html' %}
+    {% include 'pages/contact.html' %}
+    {% include 'pages/p_modal.html' %} {% endcomment %}
+
 
      {% include 'pages/footer.html' %}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
-    <script src="{% static 'scripts/mdb.min.js' %}"></script>
-    <script src="{% static 'scripts/aos.js' %}"></script>
+    </div>
+
     <script src="{% static 'scripts/main.js' %}"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  
 
   </body>
 </html>

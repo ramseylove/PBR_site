@@ -1,0 +1,75 @@
+{% for p in portfolios %}
+    <div class="modal fade" id="portfolioModal-{{ p.id }}" tabindex="-1" role="dialog" aria-labelledby="{{ p.title }}"
+      aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5>{{ p.title }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <!--Carousel Wrapper-->
+                <div id="portfolioCarouselIndicators-{{ p.id }}" class="carousel carousel-dark slide" data-bs-ride="carousel">
+
+                    <div class="carousel-inner" >
+                    <!--Slides-->
+                        {% for image in p.images.all %}
+                          <div class="carousel-item {% if forloop.first %}active{% endif %}" >
+                              <img src="{{ image.portfolio_image.url }}" class="d-block h-100" alt="{{ image.alt }}">
+                            </div>
+                        {% endfor %}
+                    </div>
+                  <!--/.Slides-->
+                      <!--Controls-->
+                      <button class="carousel-control-prev" type="button" data-bs-target="#portfolioCarouselIndicators-{{ p.id }}"
+                              data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                      </button>
+                      <button class="carousel-control-next" type="button" data-bs-target="#portfolioCarouselIndicators-{{ p.id }}"
+                               data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                      </button>
+                      <!--/.Controls-->
+                </div>
+              <!--/.Carousel Wrapper-->
+              </div>
+
+                <div class="row">
+                    <h4 class="text-left p-2 mt-2">Special Features</h4>
+                </div>
+                <!--Accordion wrapper-->
+                <div class="accordion accordion-flush" id="accordionEx" aria-multiselectable="false">
+                  <!-- Accordion card -->
+                {% for f in p.features.all %}
+                  <div class="accordion-item">
+                    <!-- Card header -->
+                    <div class="accordion-header" id="heading-{{ f.id }}">
+                      <div class="accordion-button collapsed" type="button"
+                           data-bs-toggle="collapse" data-bs-target="#collapse-{{ f.id }}" data-bs-parent="#accordionEx"
+                           data-tab="{{ f.id }}" aria-expanded="true" aria-controls="collapseOne1">
+                        <h6 class="mb-0">
+                            {{ f.title }}
+                        </h6>
+                      </div>
+                    </div>
+
+                    <!-- Card body -->
+                    <div id="collapse-{{ f.id }}" class="accordion-collapse collapse" aria-labelledby="headingOne1"
+                      data-bs-parent="#accordionEx">
+                      <div class="accordion-body">
+                          {{ f.description|safe }}
+                      </div>
+                    </div>
+                  </div>
+                {% endfor %}
+                </div>
+                <!-- Accordion wrapper -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endfor %}
